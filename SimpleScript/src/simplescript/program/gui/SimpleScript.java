@@ -24,7 +24,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
@@ -45,13 +44,12 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class SimpleScript {
 
-    private JFrame frmSimplescript;
-    private CanvasActions taskPanel;
+    private JFrame frmSimpleScript;
+    private CanvasActions canvasPanel;
     private JButton btnClear;
     private JButton btnDelete;
-    private JPanel fileChooserPanel;
     private JFileChooser fileChooser;
-    private JTextArea textArea;
+    private JTextArea outputArea;
     private Object[] separateCommands;
 
     /**
@@ -63,7 +61,7 @@ public class SimpleScript {
 		try {
 		    setComponentStyles();
 		    SimpleScript window = new SimpleScript();
-		    window.frmSimplescript.setVisible(true);
+		    window.frmSimpleScript.setVisible(true);
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
@@ -150,14 +148,14 @@ public class SimpleScript {
 		frameMetrics.FRAMESIZE_LABEL_Y, frameMetrics.LABELS_WIDTH,
 		frameMetrics.LABELS_HEIGHT);
 
-	frmSimplescript = new JFrame();
-	frmSimplescript.setIconImage(new ImageIcon(this.getClass().getResource(
+	frmSimpleScript = new JFrame();
+	frmSimpleScript.setIconImage(new ImageIcon(this.getClass().getResource(
 		"/simpleScriptLogo.png")).getImage());
-	frmSimplescript.setBounds(frameMetrics.X, frameMetrics.Y,
+	frmSimpleScript.setBounds(frameMetrics.X, frameMetrics.Y,
 		frameMetrics.WIDTH, frameMetrics.HEIGHT);
 
-	taskPanel = new CanvasActions(frameMetrics.WIDTH, frameMetrics.HEIGHT);
-	frmSimplescript.getContentPane().add(taskPanel);
+	canvasPanel = new CanvasActions(frameMetrics.WIDTH, frameMetrics.HEIGHT);
+	frmSimpleScript.getContentPane().add(canvasPanel);
 
 	setupFrame();
 
@@ -172,7 +170,7 @@ public class SimpleScript {
 	btnCompile.setBounds(frameMetrics.COMPILE_BUTTON_X,
 		frameMetrics.COMPILE_BUTTON_Y, frameMetrics.BUTTONS_WIDTH,
 		frameMetrics.BUTTONS_HEIGHT);
-	taskPanel.add(btnCompile);
+	canvasPanel.add(btnCompile);
 	btnCompile.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent arg0) {
 		try {
@@ -183,7 +181,7 @@ public class SimpleScript {
 		    // Processing and building of commands
 		    for (int i = 0; i < separateCommands.length; i++) {
 			processor = CommandProcessor.getProcessor(
-				(String) separateCommands[i], taskPanel);
+				(String) separateCommands[i], canvasPanel);
 			executableCommands[i] = processor
 				.buildExecutableCommand();
 		    }
@@ -193,17 +191,17 @@ public class SimpleScript {
 			    executableCommands);
 		    runtime.run();
 
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Successful execution!");
 		} catch (IOException e) {
 		    JOptionPane.showMessageDialog(null,
 			    System.getProperty("line.separator")
 				    + "I/O problem occured!", "ERROR",
 			    JOptionPane.ERROR_MESSAGE);
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		} catch (AWTException e) {
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		} catch (UnknownCommandException e) {
 		    JOptionPane.showMessageDialog(
@@ -214,14 +212,14 @@ public class SimpleScript {
 				    + System.getProperty("line.separator")
 				    + "/ REOPEN FILE AFTER YOU FIX THE ERROR /",
 			    "ERROR", JOptionPane.ERROR_MESSAGE);
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		} catch (NullPointerException npe) {
 		    JOptionPane.showMessageDialog(null,
 			    System.getProperty("line.separator")
 				    + "Missing / not opened file!", "ERROR",
 			    JOptionPane.ERROR_MESSAGE);
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		} catch (ArrayIndexOutOfBoundsException aobe) {
 		    JOptionPane.showMessageDialog(null,
@@ -234,7 +232,7 @@ public class SimpleScript {
 			    System.getProperty("line.separator")
 				    + "Illegal format for color, use # prefix!",
 			    "ERROR", JOptionPane.ERROR_MESSAGE);
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		} catch (IllegalArgumentException iae) {
 		    JOptionPane.showMessageDialog(
@@ -242,7 +240,7 @@ public class SimpleScript {
 			    System.getProperty("line.separator")
 				    + "Incompatible symbol/button on local(Mouse/Keyboard)!",
 			    "ERROR", JOptionPane.ERROR_MESSAGE);
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		    iae.printStackTrace();
 		} catch (CommandFormatException e) {
@@ -251,7 +249,7 @@ public class SimpleScript {
 			    System.getProperty("line.separator")
 				    + e.getMessage(), "ERROR",
 			    JOptionPane.ERROR_MESSAGE);
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		}
 	    }
@@ -265,11 +263,11 @@ public class SimpleScript {
 		frameMetrics.BUTTONS_HEIGHT);
 	btnClear.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent e) {
-		taskPanel.fillCanvas(Color.BLACK);
+		canvasPanel.fillCanvas(Color.BLACK);
 	    }
 	});
-	taskPanel.setLayout(null);
-	taskPanel.add(btnClear);
+	canvasPanel.setLayout(null);
+	canvasPanel.add(btnClear);
 
 	btnDelete = new JButton("DELETE");
 	btnDelete.setToolTipText("Deletes source files( tagged with [src] )");
@@ -282,26 +280,26 @@ public class SimpleScript {
 		try {
 		    // Deletes all files containing the tag - [src]
 		    Runtime.getRuntime().exec("cmd /c del *[src]*.txt");
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Excercise files removed!");
 		} catch (IOException e) {
 		}
 	    }
 	});
-	taskPanel.add(btnDelete);
+	canvasPanel.add(btnDelete);
 
 	JButton btnExit = new JButton("EXIT");
 	btnExit.setFont(new Font("Tahoma", Font.BOLD, 11));
 	btnExit.setToolTipText("Closes program immediately");
 	btnExit.addActionListener(new ActionListener() {
 	    public void actionPerformed(ActionEvent e) {
-		frmSimplescript.dispose();
+		frmSimpleScript.dispose();
 	    }
 	});
 	btnExit.setBounds(frameMetrics.BACK_BUTTON_X,
 		frameMetrics.BACK_BUTTON_Y, frameMetrics.BUTTONS_WIDTH,
 		frameMetrics.BUTTONS_HEIGHT);
-	taskPanel.add(btnExit);
+	canvasPanel.add(btnExit);
 
 	JButton btnOpen = new JButton("OPEN");
 	btnOpen.setToolTipText("Opens a source( .txt ) file");
@@ -310,7 +308,7 @@ public class SimpleScript {
 	    public void actionPerformed(ActionEvent arg0) {
 
 		// Initial validation of loaded source file
-		int dialogState = fileChooser.showOpenDialog(fileChooserPanel);
+		int dialogState = fileChooser.showOpenDialog(fileChooser);
 
 		if (dialogState == JFileChooser.CANCEL_OPTION) {
 		    JOptionPane.showMessageDialog(null,
@@ -333,14 +331,14 @@ public class SimpleScript {
 		}
 
 		// Extraction of commands from the source file
-		BufferedReader br = null;
+		BufferedReader reader = null;
 		Vector commandLines = new Vector(16);
 
 		try {
 		    String currentLine;
-		    br = new BufferedReader(new FileReader(codeToCompile));
+		    reader = new BufferedReader(new FileReader(codeToCompile));
 
-		    while ((currentLine = br.readLine()) != null) {
+		    while ((currentLine = reader.readLine()) != null) {
 			commandLines.add(currentLine);
 		    }
 
@@ -348,23 +346,23 @@ public class SimpleScript {
 
 		    separateCommands = commandLines.toArray();
 
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "File sucessfully opened: " + "\""
 			    + codeToCompile.getName() + "\"");
 
 		} catch (FileNotFoundException fnfe) {
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "File not found!");
 		} catch (IOException ioe) {
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "File I/O problem occured!");
 		} catch (NullPointerException npe) {
-		    textArea.setText(System.getProperty("line.separator")
+		    outputArea.setText(System.getProperty("line.separator")
 			    + "Compilation failed!");
 		} finally {
 		    try {
-			if (br != null)
-			    br.close();
+			if (reader != null)
+			    reader.close();
 		    } catch (IOException iox) {
 		    }
 		}
@@ -373,15 +371,15 @@ public class SimpleScript {
 	btnOpen.setBounds(frameMetrics.OPEN_BUTTON_X,
 		frameMetrics.OPEN_BUTTON_Y, frameMetrics.BUTTONS_WIDTH,
 		frameMetrics.BUTTONS_HEIGHT);
-	taskPanel.add(btnOpen);
+	canvasPanel.add(btnOpen);
 
 	JScrollPane scrollPane = new JScrollPane();
 	scrollPane.setBounds(frameMetrics.TEXT_AREA_X,
 		frameMetrics.TEXT_AREA_Y, frameMetrics.TEXT_AREA_WIDTH,
 		frameMetrics.TEXT_AREA_HEIGHT);
-	taskPanel.add(scrollPane);
+	canvasPanel.add(scrollPane);
 
-	textArea = new JTextArea();
+	outputArea = new JTextArea();
 	setupOutputArea(frameMetrics, scrollPane);
 
 	JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance()
@@ -406,13 +404,14 @@ public class SimpleScript {
      */
     private void setupOutputArea(FrameMetrics frameMetrics,
 	    JScrollPane scrollPane) {
-	textArea.setToolTipText("Shows status of current execution");
-	textArea.setEditable(false);
-	textArea.setBorder(new TitledBorder(null, "STATUS",
+	outputArea.setToolTipText("Shows status of current execution");
+	outputArea.setEditable(false);
+	outputArea.setBorder(new TitledBorder(null, "STATUS",
 		TitledBorder.LEADING, TitledBorder.TOP, null, null));
-	textArea.setBounds(frameMetrics.TEXT_AREA_X, frameMetrics.TEXT_AREA_Y,
-		frameMetrics.TEXT_AREA_WIDTH, frameMetrics.TEXT_AREA_HEIGHT);
-	scrollPane.setViewportView(textArea);
+	outputArea.setBounds(frameMetrics.TEXT_AREA_X,
+		frameMetrics.TEXT_AREA_Y, frameMetrics.TEXT_AREA_WIDTH,
+		frameMetrics.TEXT_AREA_HEIGHT);
+	scrollPane.setViewportView(outputArea);
     }
 
     /**
@@ -438,14 +437,14 @@ public class SimpleScript {
 		.getPredefinedCursor(Cursor.HAND_CURSOR));
 	lblNewJgoodiesTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 	lblNewJgoodiesTitle.setHorizontalAlignment(SwingConstants.CENTER);
-	lblNewJgoodiesTitle.setLabelFor(taskPanel);
+	lblNewJgoodiesTitle.setLabelFor(canvasPanel);
 	lblNewJgoodiesTitle.setFont(new Font("Ravie", Font.PLAIN, 18));
 	lblNewJgoodiesTitle.setForeground(Color.YELLOW);
 	lblNewJgoodiesTitle.setBounds(178, 7, 249, 14);
 	lblNewJgoodiesTitle.setBounds(frameMetrics.CAPTION_LABEL_X,
 		frameMetrics.CAPTION_LABEL_Y, frameMetrics.CAPTION_LABEL_WIDTH,
 		frameMetrics.CAPTION_LABEL_HEIGHT);
-	taskPanel.add(lblNewJgoodiesTitle);
+	canvasPanel.add(lblNewJgoodiesTitle);
     }
 
     /**
@@ -473,8 +472,8 @@ public class SimpleScript {
 
 	resolutionLabel.setText(resolution);
 	frameSizeLabel.setText(frameSize);
-	taskPanel.add(resolutionLabel);
-	taskPanel.add(frameSizeLabel);
+	canvasPanel.add(resolutionLabel);
+	canvasPanel.add(frameSizeLabel);
     }
 
     /**
@@ -526,11 +525,11 @@ public class SimpleScript {
      * </p>
      */
     private void setupFrame() {
-	frmSimplescript.setCursor(Cursor
+	frmSimpleScript.setCursor(Cursor
 		.getPredefinedCursor(Cursor.HAND_CURSOR));
-	frmSimplescript.setTitle("SimpleScript\u2122");
-	frmSimplescript.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frmSimplescript.getContentPane().setLayout(new CardLayout(0, 0));
-	frmSimplescript.setResizable(false);
+	frmSimpleScript.setTitle("SimpleScript\u2122");
+	frmSimpleScript.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frmSimpleScript.getContentPane().setLayout(new CardLayout(0, 0));
+	frmSimpleScript.setResizable(false);
     }
 }
