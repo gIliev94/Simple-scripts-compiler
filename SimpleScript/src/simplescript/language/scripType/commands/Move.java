@@ -36,6 +36,6 @@ public class Move extends Command {
     }
 
     public String getCommandFormat() {
-	return "MOVE\\s[0-9]+\\s[0-9]+";
+	return "^MOVE\\s[0-9]+\\s[0-9]+$";
     }
 }

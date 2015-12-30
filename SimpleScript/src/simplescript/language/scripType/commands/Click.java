@@ -50,6 +50,6 @@ public class Click extends Command {
     }
 
     public String getCommandFormat() {
-	return "CLICK\\sLEFT|RIGHT|LEFTDOUBLE";
+	return "^CLICK\\sLEFT$|RIGHT$|LEFTDOUBLE$";
     }
 }

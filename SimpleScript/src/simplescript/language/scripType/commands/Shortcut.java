@@ -69,6 +69,6 @@ public class Shortcut extends Command {
     }
 
     public String getCommandFormat() {
-	return "PRESS\\s\\w+";
+	return "^PRESS\\s\\w+$|\\w+\\+\\w+$";
     }
 }

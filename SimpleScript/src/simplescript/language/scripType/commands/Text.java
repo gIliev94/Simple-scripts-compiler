@@ -51,6 +51,6 @@ public class Text extends Command {
     }
 
     public String getCommandFormat() {
-	return "TEXT\\s\\w+";
+	return "^TEXT\\s\\w+";
     }
 }
