@@ -52,7 +52,7 @@ public class SimpleScript {
     private JPanel fileChooserPanel;
     private JFileChooser fileChooser;
     private JTextArea textArea;
-    private String[] separates;
+    private Object[] separateCommands;
 
     /**
      * Launch the application.
@@ -178,12 +178,12 @@ public class SimpleScript {
 		try {
 
 		    CommandProcessor processor;
-		    Command[] executableCommands = new Command[separates.length];
+		    Command[] executableCommands = new Command[separateCommands.length];
 
 		    // Processing and building of commands
-		    for (int i = 0; i < separates.length; i++) {
-			processor = CommandProcessor.getProcessor(separates[i],
-				taskPanel);
+		    for (int i = 0; i < separateCommands.length; i++) {
+			processor = CommandProcessor.getProcessor(
+				(String) separateCommands[i], taskPanel);
 			executableCommands[i] = processor
 				.buildExecutableCommand();
 		    }
@@ -344,13 +344,10 @@ public class SimpleScript {
 			commandLines.add(currentLine);
 		    }
 
-		    String[] separateCommands = new String[commandLines.size()];
+		    separateCommands = new String[commandLines.size()];
 
-		    for (int i = 0; i < commandLines.size(); i++) {
-			separateCommands[i] = (String) commandLines.get(i);
-		    }
+		    separateCommands = commandLines.toArray();
 
-		    separates = separateCommands;
 		    textArea.setText(System.getProperty("line.separator")
 			    + "File sucessfully opened: " + "\""
 			    + codeToCompile.getName() + "\"");
