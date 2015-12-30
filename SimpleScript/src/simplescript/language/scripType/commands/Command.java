@@ -89,7 +89,7 @@ public abstract class Command {
      */
     public static boolean hasValidCommandFormat(String testableClassname,
 	    String testableStàtement) {
-	String testablePattern = "dummyCommand";
+	String testablePattern = "dummyPattern";
 
 	if (testableClassname.equalsIgnoreCase(Keywords.LINE)) {
 	    testablePattern = new Line().getCommandFormat();
