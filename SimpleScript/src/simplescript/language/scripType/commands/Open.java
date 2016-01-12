@@ -25,8 +25,4 @@ public class Open extends Command {
     public String toString() {
 	return "open";
     }
-
-    public String getCommandFormat() {
-	return "^OPEN\\s\\w+\\.\\w+$|\\w+\\.\\w+\\.\\w+$";
-    }
 }

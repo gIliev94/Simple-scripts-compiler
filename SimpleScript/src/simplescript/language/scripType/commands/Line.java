@@ -33,8 +33,4 @@ public class Line extends Command {
     public String toString() {
 	return "line";
     }
-
-    public String getCommandFormat() {
-	return "^LINE\\s#[0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF]\\s[0-9][0-9][0-9]\\s[0-9][0-9][0-9]\\s[0-9][0-9][0-9]\\s[0-9][0-9][0-9]\\s[0-1]$";
-    }
 }

@@ -191,66 +191,38 @@ public class SimpleScript {
 			    executableCommands);
 		    runtime.run();
 
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Successful execution!");
-		} catch (IOException e) {
-		    JOptionPane.showMessageDialog(null,
-			    System.getProperty("line.separator")
-				    + "I/O problem occured!", "ERROR",
-			    JOptionPane.ERROR_MESSAGE);
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
-		} catch (AWTException e) {
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
-		} catch (UnknownCommandException e) {
-		    JOptionPane.showMessageDialog(
-			    null,
-			    System.getProperty("line.separator")
-				    + e.getMessage()
-				    + System.getProperty("line.separator")
-				    + System.getProperty("line.separator")
-				    + "/ REOPEN FILE AFTER YOU FIX THE ERROR /",
-			    "ERROR", JOptionPane.ERROR_MESSAGE);
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
+		    showOutMsg("Successful execution!");
+		    
+		} catch (IOException ioe) {
+		    showErr("ERROR", "I/O problem occured!", JOptionPane.ERROR_MESSAGE);
+		    showOutMsg("Compilation failed!");
+		} catch (AWTException awte) {
+		    showOutMsg("Compilation failed!");
+		} catch (UnknownCommandException uce) {
+		    showErr("ERROR", uce.getMessage()
+			    + System.getProperty("line.separator")
+			    + System.getProperty("line.separator")
+			    + "/ REOPEN FILE AFTER YOU FIX THE ERROR /", JOptionPane.ERROR_MESSAGE);
+		    showOutMsg("Compilation failed!");
 		} catch (NullPointerException npe) {
-		    JOptionPane.showMessageDialog(null,
-			    System.getProperty("line.separator")
-				    + "Missing / not opened file!", "ERROR",
+		    showErr("ERROR", "Missing / not opened file!",
 			    JOptionPane.ERROR_MESSAGE);
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
+		    showOutMsg("Compilation failed!");
 		} catch (ArrayIndexOutOfBoundsException aobe) {
-		    JOptionPane.showMessageDialog(null,
-			    System.getProperty("line.separator")
-				    + "Empty file, no commands to run!!",
-			    "WARNING", JOptionPane.WARNING_MESSAGE);
+		    showErr("WARNING", "Empty file, no commands to run!!",
+			    JOptionPane.WARNING_MESSAGE);
 		} catch (NumberFormatException nfe) {
-		    JOptionPane.showMessageDialog(
-			    null,
-			    System.getProperty("line.separator")
-				    + "Illegal format for color, use # prefix!",
-			    "ERROR", JOptionPane.ERROR_MESSAGE);
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
-		} catch (IllegalArgumentException iae) {
-		    JOptionPane.showMessageDialog(
-			    null,
-			    System.getProperty("line.separator")
-				    + "Incompatible symbol/button on local(Mouse/Keyboard)!",
-			    "ERROR", JOptionPane.ERROR_MESSAGE);
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
-		    iae.printStackTrace();
-		} catch (CommandFormatException e) {
-		    JOptionPane.showMessageDialog(
-			    null,
-			    System.getProperty("line.separator")
-				    + e.getMessage(), "ERROR",
+		    showErr("ERROR", "Illegal format for color, use # prefix!",
 			    JOptionPane.ERROR_MESSAGE);
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
+		    showOutMsg("Compilation failed!");
+		} catch (IllegalArgumentException iae) {
+		    showErr("ERROR",
+			    "Incompatible symbol/button on local(Mouse/Keyboard)!",
+			    JOptionPane.ERROR_MESSAGE);
+		    showOutMsg("Compilation failed!");
+		} catch (CommandFormatException cfe) {
+		    showErr("ERROR", cfe.getMessage(), JOptionPane.ERROR_MESSAGE);
+		    showOutMsg("Compilation failed!");
 		}
 	    }
 	});
@@ -280,8 +252,7 @@ public class SimpleScript {
 		try {
 		    // Deletes all files containing the tag - [src]
 		    Runtime.getRuntime().exec("cmd /c del *[src]*.txt");
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Excercise files removed!");
+		    showOutMsg("Excercise files removed!");
 		} catch (IOException e) {
 		}
 	    }
@@ -311,9 +282,7 @@ public class SimpleScript {
 		int dialogState = fileChooser.showOpenDialog(fileChooser);
 
 		if (dialogState == JFileChooser.CANCEL_OPTION) {
-		    JOptionPane.showMessageDialog(null,
-			    System.getProperty("line.separator")
-				    + "File selection cancelled!", "WARNING",
+		    showErr("WARNING", "File selection cancelled!",
 			    JOptionPane.WARNING_MESSAGE);
 		    return;
 		}
@@ -322,11 +291,9 @@ public class SimpleScript {
 
 		if (!codeToCompile.isFile()
 			|| !codeToCompile.getName().endsWith(".txt")) {
-		    JOptionPane.showMessageDialog(
-			    null,
-			    System.getProperty("line.separator")
-				    + "Unauthorized file, only .txt permitted!!",
-			    "ERROR", JOptionPane.ERROR_MESSAGE);
+		    showErr("ERROR",
+			    "Unauthorized file, only .txt permitted!!",
+			    JOptionPane.ERROR_MESSAGE);
 		    return;
 		}
 
@@ -346,19 +313,15 @@ public class SimpleScript {
 
 		    separateCommands = commandLines.toArray();
 
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "File sucessfully opened: " + "\""
+		    showOutMsg("File sucessfully opened: " + "\""
 			    + codeToCompile.getName() + "\"");
 
 		} catch (FileNotFoundException fnfe) {
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "File not found!");
+		    showOutMsg("File not found!");
 		} catch (IOException ioe) {
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "File I/O problem occured!");
+		    showOutMsg("File I/O problem occured!");
 		} catch (NullPointerException npe) {
-		    outputArea.setText(System.getProperty("line.separator")
-			    + "Compilation failed!");
+		    showOutMsg("Compilation failed!");
 		} finally {
 		    try {
 			if (reader != null)
@@ -385,6 +348,38 @@ public class SimpleScript {
 	JLabel lblNewJgoodiesTitle = DefaultComponentFactory.getInstance()
 		.createTitle("simpleScript");
 	setupGoodiesTitle(frameMetrics, lblNewJgoodiesTitle);
+    }
+
+    /**
+     * <h1><i>showOutMsg</i></h1>
+     * <p>
+     * {@code private void showOutMsg(String message)}
+     * </p>
+     * <p>
+     * Prints appropriate message to the output area.
+     * </p>
+     * @param message - the message to be shown.
+     */
+    private void showOutMsg(String message) {
+	outputArea.setText(System.getProperty("line.separator") + message);
+    }
+
+    /**
+     * <h1><i>showErr</i></h1>
+     * <p>
+     * {@code  private void showErr(String caption, String message, int warnOrError)}
+     * </p>
+     * <p>
+     * Formats and propagates and error or a warning in a popup pane.
+     * </p>
+     * @param caption - shows the type(warn/err) of the message to the user.
+     * @param message - the message to be shown.
+     * @param warnOrError -  constant value diferentiating between WARNING and ERROR.
+     */
+    private void showErr(String caption, String message, int warnOrError) {
+	JOptionPane.showMessageDialog(null,
+		System.getProperty("line.separator") + message, caption,
+		warnOrError);
     }
 
     /**

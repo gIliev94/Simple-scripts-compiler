@@ -28,8 +28,4 @@ public class Point extends Command {
     public String toString() {
 	return "point";
     }
-
-    public String getCommandFormat() {
-	return "^POINT\\s#[0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF][0123456789ABCDEF]\\s[0-9][0-9][0-9]\\s[0-9][0-9][0-9]$";
-    }
 }

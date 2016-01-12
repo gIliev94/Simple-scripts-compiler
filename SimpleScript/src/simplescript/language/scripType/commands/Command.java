@@ -6,6 +6,7 @@ import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import simplescript.language.scripType.CommandFormats;
 import simplescript.language.scripType.Keywords;
 import simplescript.language.scripType.exceptions.WrongCommandException;
 
@@ -35,19 +36,6 @@ public abstract class Command {
     public abstract void execute() throws AWTException, IOException;
 
     public abstract String toString();
-
-    /**
-     * <h1><i>getCommandFormat</i></h1>
-     * <p>
-     * <p>
-     * {@code public abstract String getCommandFormat()}
-     * </p>
-     * Gets the corresponding format for the command. ( based on Regular
-     * Expression ) </p>
-     * 
-     * @return A string representing the format.
-     */
-    public abstract String getCommandFormat();
 
     /**
      * <h1><i>isValidCommand</i></h1>
@@ -92,21 +80,21 @@ public abstract class Command {
 	String testablePattern = "dummyPattern";
 
 	if (testableClassname.equalsIgnoreCase(Keywords.LINE)) {
-	    testablePattern = new Line().getCommandFormat();
+	    testablePattern =  CommandFormats.LINE_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.POINT)) {
-	    testablePattern = new Point().getCommandFormat();
+	    testablePattern =  CommandFormats.POINT_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.TEXT)) {
-	    testablePattern = new Text().getCommandFormat();
+	    testablePattern =  CommandFormats.TEXT_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.CLICK)) {
-	    testablePattern = new Click().getCommandFormat();
+	    testablePattern =  CommandFormats.CLICK_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.MOVE)) {
-	    testablePattern = new Move().getCommandFormat();
+	    testablePattern =  CommandFormats.MOVE_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.OPEN)) {
-	    testablePattern = new Open().getCommandFormat();
+	    testablePattern =  CommandFormats.OPEN_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.PRESS)) {
-	    testablePattern = new Shortcut().getCommandFormat();
+	    testablePattern =  CommandFormats.PRESS_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.DELAY)) {
-	    testablePattern = new Delay().getCommandFormat();
+	    testablePattern =  CommandFormats.DELAY_FORMAT;
 	}
 
 	Pattern pattern = Pattern.compile(testablePattern);

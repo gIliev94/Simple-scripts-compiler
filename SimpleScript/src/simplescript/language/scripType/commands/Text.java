@@ -49,8 +49,4 @@ public class Text extends Command {
     public String toString() {
 	return "text";
     }
-
-    public String getCommandFormat() {
-	return "^TEXT\\s\\w+";
-    }
 }

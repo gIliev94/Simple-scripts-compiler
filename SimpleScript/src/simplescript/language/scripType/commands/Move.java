@@ -34,8 +34,4 @@ public class Move extends Command {
     public String toString() {
 	return "click";
     }
-
-    public String getCommandFormat() {
-	return "^MOVE\\s[0-9]+\\s[0-9]+$";
-    }
 }

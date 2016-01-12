@@ -24,8 +24,4 @@ public class Delay extends Command {
     public String toString() {
 	return "delay";
     }
-
-    public String getCommandFormat() {
-	return "^DELAY\\s[0-9]+$";
-    }
 }
