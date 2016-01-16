@@ -10,6 +10,8 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
+import org.apache.log4j.Logger;
+
 import simplescript.program.utilities.KeyMapper;
 import simplescript.program.utilities.RobotDelays;
 
@@ -20,6 +22,8 @@ import simplescript.program.utilities.RobotDelays;
  *
  */
 public class PrerequisitesConfigurator {
+
+    private static final Logger LOG = Logger.getLogger(PrerequisitesConfigurator.class);
 
     private static BufferedWriter filewriter;
     private static Robot typewriter;
@@ -54,20 +58,24 @@ public class PrerequisitesConfigurator {
 	    createSrcFiles();
 
 	} catch (IOException ioe) {
-	    showErr("ERROR", "Unexpected error with file/directory: " + ioe.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
+		    JOptionPane.ERROR_MESSAGE);
 	} catch (AWTException awte) {
 	    showErr("ERROR", "Automation\\Threading problem: " + awte.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    LOG.error(awte.getMessage(), awte);
 	} catch (Exception e) {
 	    showErr("ERROR", "Unexpected error: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    LOG.error(e.getMessage(), e);
 	} finally {
 	    try {
 		cleanup();
 	    } catch (IOException ioe) {
-		showErr("ERROR", "Unexpected error with file/directory: " + ioe.getMessage(), JOptionPane.ERROR_MESSAGE);
+		showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
+			JOptionPane.ERROR_MESSAGE);
 	    }
 	}
     }
-    
+
     /**
      * <h1><i>doPrecleanup</i></h1>
      * <p>
@@ -75,12 +83,13 @@ public class PrerequisitesConfigurator {
      * {@code private static void doPrecleanup()}
      * </p>
      * Cleans files from previous runs of the application.
+     * 
      * @throws IOException
      */
-    private static void doPrecleanup() throws IOException{
+    private static void doPrecleanup() throws IOException {
 	Runtime system = Runtime.getRuntime();
 	File desktopFolder = new File(ConfigurationConstants.DESKTOP_FOLDER_PATH);
-	system.exec("cmd /c del *[src]*.txt ", null, desktopFolder);
+	system.exec("cmd /c del [src]*.txt ", null, desktopFolder);
     }
 
     /**
@@ -101,8 +110,8 @@ public class PrerequisitesConfigurator {
 	desktopFolderPath = ConfigurationConstants.DESKTOP_FOLDER_PATH;
 
 	Runtime system = Runtime.getRuntime();
-//	File desktopFolder = new File(desktopFolderPath);
-//	system.exec("cmd /c del a.txt ", null, desktopFolder);
+	// File desktopFolder = new File(desktopFolderPath);
+	// system.exec("cmd /c del a.txt ", null, desktopFolder);
 	system.exec("cmd /c start notepad.exe");
 
 	typewriter = new Robot();

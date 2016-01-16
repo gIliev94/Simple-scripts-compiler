@@ -2,6 +2,7 @@ package simplescript.configurator;
 
 /**
  * Utility class - sets up the different paths and names used
+ * 
  * @author Georgi Iliev
  *
  */

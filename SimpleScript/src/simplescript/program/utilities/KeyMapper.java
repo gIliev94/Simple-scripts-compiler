@@ -49,7 +49,8 @@ public class KeyMapper {
      * <p>
      * {@code private static Map<Character, Integer> populateKeyDictionary()}
      * </p>
-     * Populates a dictionary containing the local keyboard mappings.</p> 
+     * Populates a dictionary containing the local keyboard mappings.</p>
+     * 
      * @return
      */
     private static Map<Character, Integer> populateKeyDictionary() {

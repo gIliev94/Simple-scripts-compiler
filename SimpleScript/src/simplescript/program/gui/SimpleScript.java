@@ -33,6 +33,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.TitledBorder;
 import javax.swing.filechooser.FileFilter;
 
+import org.apache.log4j.Logger;
+
 import simplescript.configurator.ConfigurationConstants;
 import simplescript.configurator.PrerequisitesConfigurator;
 import simplescript.language.scripType.CommandRuntime;
@@ -52,6 +54,8 @@ import com.jgoodies.forms.factories.DefaultComponentFactory;
  *
  */
 public class SimpleScript {
+
+    private static final Logger LOG = Logger.getLogger(SimpleScript.class);
 
     private JFrame frmSimpleScript;
     private Canvas canvasPanel;
@@ -82,6 +86,7 @@ public class SimpleScript {
 		    JOptionPane.showMessageDialog(null,
 			    ConfigurationConstants.NEWLINE + "Unexpected error: " + e.getMessage(), "ERROR",
 			    JOptionPane.ERROR_MESSAGE);
+		    LOG.error(e.getMessage(), e);
 		}
 	    }
 
@@ -197,11 +202,13 @@ public class SimpleScript {
 		    showOutMsg("Successful execution!");
 
 		} catch (IOException ioe) {
-		    showErr("ERROR", "Unexpected I/O problem occured: " + ioe.getMessage(), JOptionPane.ERROR_MESSAGE);
+		    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
+			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
 		} catch (AWTException awte) {
 		    showErr("ERROR", "Automation\\Threading problem: " + awte.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error(awte.getMessage(), awte);
 		} catch (UnknownCommandException uce) {
 		    showErr("ERROR", uce.getMessage() + ConfigurationConstants.NEWLINE + ConfigurationConstants.NEWLINE
 			    + "/ REOPEN FILE AFTER YOU FIX THE ERROR /", JOptionPane.ERROR_MESSAGE);
@@ -209,9 +216,11 @@ public class SimpleScript {
 		} catch (NullPointerException npe) {
 		    showErr("ERROR", "Missing / not opened file!", JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error(npe.getMessage(), npe);
 		} catch (ArrayIndexOutOfBoundsException aobe) {
 		    showErr("WARNING", "Empty file, no commands to run!!", JOptionPane.WARNING_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error(aobe.getMessage(), aobe);
 		} catch (NumberFormatException nfe) {
 		    showErr("ERROR", "Illegal format for color, use # prefix!", JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
@@ -219,6 +228,7 @@ public class SimpleScript {
 		    showErr("ERROR", "Key mapping not found on local keyboard!" + iae.getMessage(),
 			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error(iae.getMessage(), iae);
 		} catch (CommandFormatException cfe) {
 		    showErr("ERROR", cfe.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
@@ -250,11 +260,11 @@ public class SimpleScript {
 
 		    // Deletes all files containing the tag - [src]
 		    File desktopFolder = new File(ConfigurationConstants.DESKTOP_FOLDER_PATH);
-		    Runtime.getRuntime().exec("cmd /c del *[src]*.txt", null, desktopFolder);
+		    Runtime.getRuntime().exec("cmd /c del [src]*.txt", null, desktopFolder);
 
 		    showOutMsg("Excercise files removed!");
 		} catch (IOException ioe) {
-		    showErr("ERROR", "Unexpected error with file/directory: " + ioe.getMessage(),
+		    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
 			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Deletion failed!");
 		}
@@ -317,18 +327,20 @@ public class SimpleScript {
 		    showErr("ERROR", "File not found: " + codeToCompile.getName(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
 		} catch (IOException ioe) {
-		    showErr("ERROR", "Unexpected error with file/directory: " + ioe.getMessage(),
+		    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
 			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
 		} catch (NullPointerException npe) {
 		    showErr("ERROR", "Missing internal resource value: " + npe.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error(npe.getMessage(), npe);
 		} finally {
 		    try {
 			if (reader != null)
 			    reader.close();
 		    } catch (IOException ioe) {
-			showErr("ERROR", "Unexpected error with file/directory: " + ioe.getMessage(),
+			showErr("ERROR",
+				"Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
 				JOptionPane.ERROR_MESSAGE);
 			showOutMsg("Compilation failed!");
 		    }
