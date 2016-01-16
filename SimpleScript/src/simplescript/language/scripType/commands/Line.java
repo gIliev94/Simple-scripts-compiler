@@ -3,11 +3,11 @@ package simplescript.language.scripType.commands;
 import java.awt.Color;
 import java.awt.Point;
 
-import simplescript.program.gui.CanvasActions;
+import simplescript.program.gui.Canvas;
 
 public class Line extends Command {
 
-    protected CanvasActions lineCanvas;
+    protected Canvas lineCanvas;
     protected Color lineColor;
     protected Point startPoint;
     protected Point endPoint;
@@ -16,9 +16,8 @@ public class Line extends Command {
     public Line() {
     }
 
-    public Line(Color color, Point start, Point end, boolean type,
-	    CanvasActions canvas) {
-	this.lineCanvas = canvas;
+    public Line(Color color, Point start, Point end, boolean type, Canvas processorCanvas) {
+	this.lineCanvas = processorCanvas;
 	this.lineColor = color;
 	this.startPoint = start;
 	this.endPoint = end;
@@ -26,8 +25,7 @@ public class Line extends Command {
     }
 
     public void execute() {
-	lineCanvas.drawLine(lineColor, startPoint.x, startPoint.y, endPoint.x,
-		endPoint.y, lineType);
+	lineCanvas.drawLine(lineColor, startPoint.x, startPoint.y, endPoint.x, endPoint.y, lineType);
     }
 
     public String toString() {

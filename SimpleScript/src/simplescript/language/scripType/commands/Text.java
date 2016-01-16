@@ -5,6 +5,7 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 
+import simplescript.program.utilities.KeyMapper;
 import simplescript.program.utilities.RobotDelays;
 
 public class Text extends Command {
@@ -24,24 +25,22 @@ public class Text extends Command {
 	robot.delay(RobotDelays.INITIAL_DELAY);
 	robot.setAutoDelay(RobotDelays.TYPING_DELAY);
 
+	int key = 0;
 	char[] keys = text.toCharArray();
 
 	for (int i = 0; i < keys.length; i++) {
-	    if (Character.isWhitespace(keys[i])) {
-		robot.keyPress(KeyEvent.VK_SPACE);
-		robot.keyRelease(KeyEvent.VK_SPACE);
-	    } else if (Character.isUpperCase(keys[i])) {
-		robot.keyPress(KeyEvent.VK_SHIFT);
-		robot.keyPress(Character.toUpperCase(keys[i]));
 
-		robot.keyRelease(Character.toUpperCase(keys[i]));
+	    key = KeyMapper.retrieveKey(keys[i]);
+
+	    if (Character.isUpperCase(keys[i])) {
+		robot.keyPress(KeyEvent.VK_SHIFT);
+		robot.keyPress(key);
+
+		robot.keyRelease(key);
 		robot.keyRelease(KeyEvent.VK_SHIFT);
-	    } else if (keys[i] == ',') {
-		robot.keyPress(KeyEvent.VK_COMMA);
-		robot.keyRelease(KeyEvent.VK_COMMA);
 	    } else {
-		robot.keyPress(Character.toUpperCase(keys[i]));
-		robot.keyRelease(Character.toUpperCase(keys[i]));
+		robot.keyPress(key);
+		robot.keyRelease(key);
 	    }
 	}
     }

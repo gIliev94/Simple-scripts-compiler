@@ -9,8 +9,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 public class OpenProcessor extends CommandProcessor {
 
-    public OpenProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public OpenProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 

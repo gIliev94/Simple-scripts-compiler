@@ -10,7 +10,7 @@ package simplescript.language.scripType;
  * @version 1.0
  */
 public class CommandFormats {
-    
+
     public static final String CLICK_FORMAT = "^CLICK\\sLEFT$|RIGHT$|LEFTDOUBLE$";
     public static final String MOVE_FORMAT = "^MOVE\\s[0-9]+\\s[0-9]+$";
     public static final String PRESS_FORMAT = "^PRESS\\s\\w+$|\\w+\\+\\w+$";

@@ -9,8 +9,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 public class MoveProcessor extends CommandProcessor {
 
-    public MoveProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public MoveProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 

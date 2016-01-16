@@ -3,57 +3,42 @@ package simplescript.program.gui;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.UUID;
 
 import javax.swing.JPanel;
 
 /**
- * <h1>Environment class - sets up the canvas for drawing purposes</h1>
- * <p>
- * </p>
- * 
- * @since 2015-11-23
+ * Utility class - represents the drawing canvas.
  * @author Georgi Iliev
- * @version 1.7
+ *
  */
-public class CanvasActions extends JPanel {
+public class Canvas extends JPanel {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
     private BufferedImage canvas;
     private BasicStroke dashPattern;
     private Graphics2D dashedLineDrawer;
     private Graphics2D continuousLineDrawer;
 
-    public CanvasActions(int width, int height) throws InterruptedException {
+    /**
+     * <h1>Environment class - sets up the canvas for drawing purposes</h1>
+     * <p>
+     * </p>
+     * 
+     * @since 2015-11-23
+     * @author Georgi Iliev
+     * @version 1.7
+     */
+    public Canvas(int width, int height) {
 	canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+	fillCanvas(Color.BLACK);
 	dashedLineDrawer = canvas.createGraphics();
 	dashPattern = createDashStroke();
 	continuousLineDrawer = canvas.createGraphics();
-	fillCanvas(Color.BLACK);
-    }
-
-    /**
-     * 
-     * <h1><i>fillCanvas</i></h1>
-     * <p>
-     * <p>
-     * {@code private void fillCanvas(Color color)}
-     * </p>
-     * Paints the whole canvas surface with the given color. </p>
-     * 
-     * @param color
-     *            - the color to fill the whole canvas with.
-     */
-    public void fillCanvas(Color color) {
-	int colorCode = color.getRGB();
-	for (int x = 0; x < canvas.getWidth(); x++) {
-	    for (int y = 0; y < canvas.getHeight(); y++) {
-		canvas.setRGB(x, y, colorCode);
-	    }
-	}
-	repaint();
     }
 
     /**
@@ -68,9 +53,40 @@ public class CanvasActions extends JPanel {
      */
     private BasicStroke createDashStroke() {
 	float[] dash = new float[] { 4.0f, 4.0f };
-	BasicStroke dashStroke = new BasicStroke(1.0f, BasicStroke.CAP_SQUARE,
-		BasicStroke.JOIN_BEVEL, 0.0f, dash, 0);
+	BasicStroke dashStroke = new BasicStroke(1.0f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0.0f, dash, 0);
 	return dashStroke;
+    }
+
+    public Dimension getPreferredSize() {
+	return new Dimension(canvas.getWidth(), canvas.getHeight());
+    }
+
+    public void paintComponent(Graphics g) {
+	super.paintComponent(g);
+	Graphics2D g2 = (Graphics2D) g;
+	g2.drawImage(canvas, null, null);
+    }
+
+    /**
+     * 
+     * <h1><i>fillCanvas</i></h1>
+     * <p>
+     * <p>
+     * {@code private void fillCanvas(Color color)}
+     * </p>
+     * Paints the whole canvas surface with the given color. </p>
+     * 
+     * @param color
+     *            - the color to fill the whole canvas with.
+     */
+    public void fillCanvas(Color c) {
+	int color = c.getRGB();
+	for (int x = 0; x < canvas.getWidth(); x++) {
+	    for (int y = 0; y < canvas.getHeight(); y++) {
+		canvas.setRGB(x, y, color);
+	    }
+	}
+	repaint();
     }
 
     /**
@@ -95,8 +111,7 @@ public class CanvasActions extends JPanel {
      * @param type
      *            - type of the line( dashed/continuous )
      */
-    public void drawLine(Color color, int x1, int y1, int x2, int y2,
-	    boolean type) {
+    public void drawLine(Color color, int x1, int y1, int x2, int y2, boolean type) {
 	dashedLineDrawer.setColor(color);
 	continuousLineDrawer.setColor(color);
 
@@ -129,9 +144,5 @@ public class CanvasActions extends JPanel {
 	int colorCode = color.getRGB();
 	canvas.setRGB(x, y, colorCode);
 	repaint();
-    }
-
-    public Dimension getPreferredSize() {
-	return new Dimension(canvas.getWidth(), canvas.getHeight());
     }
 }

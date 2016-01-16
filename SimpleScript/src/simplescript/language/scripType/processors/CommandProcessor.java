@@ -8,7 +8,7 @@ import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.exceptions.CommandFormatException;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.language.scripType.exceptions.WrongCommandException;
-import simplescript.program.gui.CanvasActions;
+import simplescript.program.gui.Canvas;
 
 /**
  * <h1>Environment class - validates and processes commands</h1>
@@ -23,19 +23,17 @@ public abstract class CommandProcessor {
 
     protected String commandString;
     protected String[] commandParts;
-    protected CanvasActions processorCanvas;
+    protected Canvas processorCanvas;
 
-    public CommandProcessor(String commandStatement, CanvasActions canvas)
-	    throws UnknownCommandException {
-	if (commandStatement != null && canvas != null) {
+    public CommandProcessor(String commandStatement, Canvas canvasPanel) throws UnknownCommandException {
+	if (commandStatement != null && canvasPanel != null) {
 	    this.commandString = commandStatement;
 	    this.commandParts = commandString.split(" ");
-	    this.processorCanvas = canvas;
+	    this.processorCanvas = canvasPanel;
 	}
     }
 
-    public CommandProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public CommandProcessor(String commandStatement) throws UnknownCommandException {
 	if (commandStatement != null) {
 	    this.commandString = commandStatement;
 	    this.commandParts = commandString.split(" ");
@@ -56,8 +54,7 @@ public abstract class CommandProcessor {
      * @throws AWTException
      * @throws IOException
      */
-    public abstract Command buildExecutableCommand() throws AWTException,
-	    IOException;
+    public abstract Command buildExecutableCommand() throws AWTException, IOException;
 
     /**
      * <h1><i>validateCommand</i></h1>
@@ -76,9 +73,8 @@ public abstract class CommandProcessor {
      * @throws WrongCommandException
      * @throws UnknownCommandException
      */
-    private static void validateCommand(String commandStatement, String command)
-	    throws CommandFormatException, WrongCommandException,
-	    UnknownCommandException {
+    private static void validateCommand(String commandStatement, String command) throws CommandFormatException,
+	    WrongCommandException, UnknownCommandException {
 
 	if (command.equalsIgnoreCase("")) {
 	    throw new UnknownCommandException("\"" + command + "\""
@@ -106,25 +102,24 @@ public abstract class CommandProcessor {
      * 
      * @param commandStatement
      *            - the statement string from user source file.
-     * @param canvas
+     * @param canvasPanel
      *            - the current canvas object for painting purposes.
      * @return Appropriate processor for the given command.
      * @throws UnknownCommandException
      * @throws CommandFormatException
      */
-    public static CommandProcessor getProcessor(String commandStatement,
-	    CanvasActions canvas) throws UnknownCommandException,
-	    CommandFormatException {
+    public static CommandProcessor getProcessor(String commandStatement, Canvas canvasPanel)
+	    throws UnknownCommandException, CommandFormatException {
 
 	String command = commandStatement.split(" ")[0];
 
 	validateCommand(commandStatement, command);
 
 	if (command.equalsIgnoreCase(Keywords.LINE)) {
-	    return new LineProcessor(commandStatement, canvas);
+	    return new LineProcessor(commandStatement, canvasPanel);
 
 	} else if (command.equalsIgnoreCase(Keywords.POINT)) {
-	    return new PointProcessor(commandStatement, canvas);
+	    return new PointProcessor(commandStatement, canvasPanel);
 
 	} else if (command.equalsIgnoreCase(Keywords.TEXT)) {
 	    return new TextProcessor(commandStatement);

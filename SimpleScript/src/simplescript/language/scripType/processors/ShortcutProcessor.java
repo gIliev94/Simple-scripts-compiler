@@ -9,8 +9,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 public class ShortcutProcessor extends CommandProcessor {
 
-    public ShortcutProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public ShortcutProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 

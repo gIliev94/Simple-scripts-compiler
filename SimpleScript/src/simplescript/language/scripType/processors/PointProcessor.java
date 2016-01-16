@@ -5,13 +5,12 @@ import java.awt.Color;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.commands.Point;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
-import simplescript.program.gui.CanvasActions;
+import simplescript.program.gui.Canvas;
 
 public class PointProcessor extends CommandProcessor {
 
-    public PointProcessor(String commandStatement, CanvasActions canvas)
-	    throws UnknownCommandException {
-	super(commandStatement, canvas);
+    public PointProcessor(String commandStatement, Canvas canvasPanel) throws UnknownCommandException {
+	super(commandStatement, canvasPanel);
     }
 
     public Command buildExecutableCommand() {

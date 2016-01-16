@@ -2,11 +2,11 @@ package simplescript.language.scripType.commands;
 
 import java.awt.Color;
 
-import simplescript.program.gui.CanvasActions;
+import simplescript.program.gui.Canvas;
 
 public class Point extends Command {
 
-    protected CanvasActions pointCanvas;
+    protected Canvas pointCanvas;
     protected Color pointColor;
     protected int x;
     protected int y;
@@ -14,8 +14,8 @@ public class Point extends Command {
     public Point() {
     }
 
-    public Point(Color color, int x, int y, CanvasActions canvas) {
-	this.pointCanvas = canvas;
+    public Point(Color color, int x, int y, Canvas processorCanvas) {
+	this.pointCanvas = processorCanvas;
 	this.pointColor = color;
 	this.x = x;
 	this.y = y;

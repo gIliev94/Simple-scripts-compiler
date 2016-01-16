@@ -9,8 +9,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 public class TextProcessor extends CommandProcessor {
 
-    public TextProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public TextProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 

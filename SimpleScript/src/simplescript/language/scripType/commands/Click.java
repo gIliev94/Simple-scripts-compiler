@@ -18,30 +18,36 @@ public class Click extends Command {
 	this.mouseButton = clickToPerform;
     }
 
-    public void execute() throws AWTException, IOException,
-	    IllegalArgumentException {
+    public void execute() throws AWTException, IOException, IllegalArgumentException {
 	Robot robot = new Robot();
 
 	robot.delay(RobotDelays.INITIAL_DELAY);
 	robot.setAutoDelay(RobotDelays.VIEWING_DELAY);
 
+	int button = 0;
+
 	if (mouseButton.equalsIgnoreCase("right")) {
-	    robot.mousePress(InputEvent.getMaskForButton(3));
-	    robot.mouseRelease(InputEvent.getMaskForButton(3));
-	    robot.mousePress(InputEvent.getMaskForButton(2));
-	    robot.mouseRelease(InputEvent.getMaskForButton(2));
+	    button = InputEvent.getMaskForButton(3);
+	    robot.mousePress(button);
+	    robot.mouseRelease(button);
 
+	    button = InputEvent.getMaskForButton(2);
+	    robot.mousePress(button);
+	    robot.mouseRelease(button);
 	} else if (mouseButton.equalsIgnoreCase("left")) {
-	    robot.mousePress(InputEvent.getMaskForButton(1));
-	    robot.mouseRelease(InputEvent.getMaskForButton(1));
+	    button = InputEvent.getMaskForButton(1);
 
+	    robot.mousePress(button);
+	    robot.mouseRelease(button);
 	} else if (mouseButton.equalsIgnoreCase("leftdouble")) {
 	    robot.setAutoDelay(RobotDelays.DOUBLECLICK_DELAY);
-	    robot.mousePress(InputEvent.getMaskForButton(1));
-	    robot.mouseRelease(InputEvent.getMaskForButton(1));
-	    robot.mousePress(InputEvent.getMaskForButton(1));
-	    robot.mouseRelease(InputEvent.getMaskForButton(1));
+	    button = InputEvent.getMaskForButton(1);
 
+	    robot.mousePress(button);
+	    robot.mouseRelease(button);
+
+	    robot.mousePress(button);
+	    robot.mouseRelease(button);
 	}
     }
 

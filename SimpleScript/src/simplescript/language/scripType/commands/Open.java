@@ -1,7 +1,10 @@
 package simplescript.language.scripType.commands;
 
 import java.awt.AWTException;
+import java.io.File;
 import java.io.IOException;
+
+import simplescript.configurator.ConfigurationConstants;
 
 public class Open extends Command {
 
@@ -16,9 +19,10 @@ public class Open extends Command {
 
     public void execute() throws AWTException, IOException {
 
-	if (program.toLowerCase().startsWith("www.")
-		|| program.toLowerCase().endsWith(".exe")) {
-	    Runtime.getRuntime().exec("cmd /c start " + program.toLowerCase());
+	if (program.toLowerCase().startsWith("www.") || program.toLowerCase().endsWith(".exe")) {
+	    Runtime system = Runtime.getRuntime();
+	    File desktopFolder = new File(ConfigurationConstants.DESKTOP_FOLDER_PATH);
+	    system.exec("cmd /c start " + program.toLowerCase(), null, desktopFolder);
 	}
     }
 

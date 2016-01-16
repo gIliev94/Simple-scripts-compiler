@@ -1,5 +1,7 @@
 package simplescript.language.scripType.exceptions;
 
+import java.util.UUID;
+
 /**
  * <h1>Resource class - formats and exception for command format with
  * appropriate message.</h1>
@@ -12,7 +14,7 @@ package simplescript.language.scripType.exceptions;
  */
 public class WrongCommandException extends UnknownCommandException {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
     public WrongCommandException(String message) {
 	super("Wrong command statement: " + message);

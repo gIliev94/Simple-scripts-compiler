@@ -9,8 +9,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 public class DelayProcessor extends CommandProcessor {
 
-    public DelayProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public DelayProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 

@@ -50,8 +50,7 @@ public abstract class Command {
      * @return TRUE if command validation passes, FALSE if it does not.
      * @throws WrongCommandException
      */
-    public static boolean isValidCommand(String statement)
-	    throws WrongCommandException {
+    public static boolean isValidCommand(String statement) throws WrongCommandException {
 	Field[] fields = Keywords.class.getDeclaredFields();
 	for (int i = 0; i < fields.length; i++) {
 	    if (statement.equalsIgnoreCase(fields[i].getName()))
@@ -59,7 +58,7 @@ public abstract class Command {
 	}
 	return false;
     }
-    
+
     /**
      * <h1><i>hasValidCommandFormat</i></h1>
      * <p>
@@ -75,26 +74,25 @@ public abstract class Command {
      *            - the command statement from user source file.
      * @return TRUE if the format is valid, FALSE if it is not.
      */
-    public static boolean hasValidCommandFormat(String testableClassname,
-	    String testableStàtement) {
+    public static boolean hasValidCommandFormat(String testableClassname, String testableStàtement) {
 	String testablePattern = "dummyPattern";
 
 	if (testableClassname.equalsIgnoreCase(Keywords.LINE)) {
-	    testablePattern =  CommandFormats.LINE_FORMAT;
+	    testablePattern = CommandFormats.LINE_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.POINT)) {
-	    testablePattern =  CommandFormats.POINT_FORMAT;
+	    testablePattern = CommandFormats.POINT_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.TEXT)) {
-	    testablePattern =  CommandFormats.TEXT_FORMAT;
+	    testablePattern = CommandFormats.TEXT_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.CLICK)) {
-	    testablePattern =  CommandFormats.CLICK_FORMAT;
+	    testablePattern = CommandFormats.CLICK_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.MOVE)) {
-	    testablePattern =  CommandFormats.MOVE_FORMAT;
+	    testablePattern = CommandFormats.MOVE_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.OPEN)) {
-	    testablePattern =  CommandFormats.OPEN_FORMAT;
+	    testablePattern = CommandFormats.OPEN_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.PRESS)) {
-	    testablePattern =  CommandFormats.PRESS_FORMAT;
+	    testablePattern = CommandFormats.PRESS_FORMAT;
 	} else if (testableClassname.equalsIgnoreCase(Keywords.DELAY)) {
-	    testablePattern =  CommandFormats.DELAY_FORMAT;
+	    testablePattern = CommandFormats.DELAY_FORMAT;
 	}
 
 	Pattern pattern = Pattern.compile(testablePattern);

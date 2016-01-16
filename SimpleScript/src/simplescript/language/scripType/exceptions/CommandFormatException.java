@@ -1,5 +1,7 @@
 package simplescript.language.scripType.exceptions;
 
+import java.util.UUID;
+
 /**
  * <h1>Resource class - formats and exception for command format with
  * appropriate message.</h1>
@@ -12,10 +14,9 @@ package simplescript.language.scripType.exceptions;
  */
 public class CommandFormatException extends Exception {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
     public CommandFormatException(String message) {
-	super("Wrong format of command: " + message + "\n"
-		+ "Make sure the parameters are correctly used!");
+	super("Wrong format of command: " + message + "\n" + "Make sure the parameters are correctly used!");
     }
 }

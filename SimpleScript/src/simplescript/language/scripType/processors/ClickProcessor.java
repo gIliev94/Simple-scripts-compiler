@@ -9,8 +9,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 public class ClickProcessor extends CommandProcessor {
 
-    public ClickProcessor(String commandStatement)
-	    throws UnknownCommandException {
+    public ClickProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 

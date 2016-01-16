@@ -32,6 +32,6 @@ public class Move extends Command {
     }
 
     public String toString() {
-	return "click";
+	return "move";
     }
 }

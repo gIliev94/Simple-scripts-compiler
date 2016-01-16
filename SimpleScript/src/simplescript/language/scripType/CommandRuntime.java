@@ -20,8 +20,7 @@ public class CommandRuntime {
 
     Command[] commands;
 
-    public CommandRuntime(Command[] userInputCommands)
-	    throws UnknownCommandException {
+    public CommandRuntime(Command[] userInputCommands) throws UnknownCommandException {
 	this.commands = userInputCommands;
     }
 
