@@ -39,9 +39,11 @@ import simplescript.configurator.ConfigurationConstants;
 import simplescript.configurator.PrerequisitesConfigurator;
 import simplescript.language.scripType.CommandRuntime;
 import simplescript.language.scripType.commands.Command;
+import simplescript.language.scripType.commands.ICommand;
 import simplescript.language.scripType.exceptions.CommandFormatException;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.language.scripType.processors.CommandProcessor;
+import simplescript.language.scripType.processors.ICommandProcessor;
 import simplescript.program.utilities.Display;
 import simplescript.program.utilities.FrameMetrics;
 
@@ -186,8 +188,8 @@ public class SimpleScript {
 	    public void actionPerformed(ActionEvent arg0) {
 		try {
 
-		    CommandProcessor processor;
-		    Command[] executableCommands = new Command[separateCommands.length];
+		    ICommandProcessor processor;
+		    ICommand[] executableCommands = new Command[separateCommands.length];
 
 		    // Processing and building of commands
 		    for (int i = 0; i < separateCommands.length; i++) {

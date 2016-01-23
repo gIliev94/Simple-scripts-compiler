@@ -5,9 +5,7 @@ package simplescript.program.utilities;
  * <p>
  * </p>
  * 
- * @since 2015-11-20
  * @author Georgi Iliev
- * @version 1.3
  */
 public class RobotDelays {
     public static final int INITIAL_DELAY = 500;

@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 
 /**
  * Utility class - represents the drawing canvas.
+ * 
  * @author Georgi Iliev
  *
  */
@@ -29,9 +30,7 @@ public class Canvas extends JPanel {
      * <p>
      * </p>
      * 
-     * @since 2015-11-23
      * @author Georgi Iliev
-     * @version 1.7
      */
     public Canvas(int width, int height) {
 	canvas = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);

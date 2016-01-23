@@ -7,9 +7,7 @@ import java.awt.Dimension;
  * <p>
  * </p>
  * 
- * @since 2015-11-15
  * @author Georgi Iliev
- * @version 1.0
  */
 public class Display {
 

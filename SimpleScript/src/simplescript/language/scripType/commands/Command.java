@@ -1,7 +1,5 @@
 package simplescript.language.scripType.commands;
 
-import java.awt.AWTException;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,27 +13,9 @@ import simplescript.language.scripType.exceptions.WrongCommandException;
  * <p>
  * </p>
  * 
- * @since 2015-11-27
  * @author Georgi Iliev
- * @version 1.4
  */
-public abstract class Command {
-
-    /**
-     * <h1><i>execute</i></h1>
-     * <p>
-     * <p>
-     * {@code public abstract void execute()}
-     * </p>
-     * Performs the neccessary low level opearations(object creation, settings,
-     * validations) to execute the built command. </p>
-     * 
-     * @throws AWTException
-     * @throws IOException
-     */
-    public abstract void execute() throws AWTException, IOException;
-
-    public abstract String toString();
+public abstract class Command implements ICommand {
 
     /**
      * <h1><i>isValidCommand</i></h1>

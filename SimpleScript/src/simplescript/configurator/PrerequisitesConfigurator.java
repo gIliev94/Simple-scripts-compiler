@@ -110,8 +110,6 @@ public class PrerequisitesConfigurator {
 	desktopFolderPath = ConfigurationConstants.DESKTOP_FOLDER_PATH;
 
 	Runtime system = Runtime.getRuntime();
-	// File desktopFolder = new File(desktopFolderPath);
-	// system.exec("cmd /c del a.txt ", null, desktopFolder);
 	system.exec("cmd /c start notepad.exe");
 
 	typewriter = new Robot();

@@ -1,8 +1,5 @@
 package simplescript.language.scripType.processors;
 
-import java.awt.AWTException;
-import java.io.IOException;
-
 import simplescript.language.scripType.Keywords;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.exceptions.CommandFormatException;
@@ -15,11 +12,9 @@ import simplescript.program.gui.Canvas;
  * <p>
  * </p>
  * 
- * @since 2015-11-25
  * @author Georgi Iliev
- * @version 1.6
  */
-public abstract class CommandProcessor {
+public abstract class CommandProcessor implements ICommandProcessor {
 
     protected String commandString;
     protected String[] commandParts;
@@ -39,22 +34,6 @@ public abstract class CommandProcessor {
 	    this.commandParts = commandString.split(" ");
 	}
     }
-
-    /**
-     * <h1><i>buildExecutableCommand</i></h1>
-     * <p>
-     * <p>
-     * {@code public abstract Command buildExecutableCommand()}
-     * </p>
-     * Performs the neccessary low level opearations(object creation, settings,
-     * validations) to build a ready-to-execute command. </p>
-     * 
-     * @return Command object containing a command, that is ready to be executed
-     *         in runtime.
-     * @throws AWTException
-     * @throws IOException
-     */
-    public abstract Command buildExecutableCommand() throws AWTException, IOException;
 
     /**
      * <h1><i>validateCommand</i></h1>

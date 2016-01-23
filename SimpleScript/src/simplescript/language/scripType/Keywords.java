@@ -5,9 +5,7 @@ package simplescript.language.scripType;
  * <p>
  * </p>
  * 
- * @since 2015-11-10
  * @author Georgi Iliev
- * @version 1.0
  */
 public class Keywords {
     public static final String LINE = "line";

@@ -6,9 +6,7 @@ package simplescript.program.utilities;
  * <p>
  * </p>
  * 
- * @since 2015-11-21
  * @author Georgi Iliev
- * @version 1.5
  */
 public class FrameMetrics {
 

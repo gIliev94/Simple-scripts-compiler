@@ -3,7 +3,7 @@ package simplescript.language.scripType;
 import java.awt.AWTException;
 import java.io.IOException;
 
-import simplescript.language.scripType.commands.Command;
+import simplescript.language.scripType.commands.ICommand;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 /**
@@ -12,15 +12,13 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
  * <p>
  * </p>
  * 
- * @since 2015-11-15
  * @author Georgi Iliev
- * @version 1.0
  */
 public class CommandRuntime {
 
-    Command[] commands;
+    ICommand[] commands;
 
-    public CommandRuntime(Command[] userInputCommands) throws UnknownCommandException {
+    public CommandRuntime(ICommand[] userInputCommands) throws UnknownCommandException {
 	this.commands = userInputCommands;
     }
 

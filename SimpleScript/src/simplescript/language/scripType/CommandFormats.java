@@ -5,9 +5,7 @@ package simplescript.language.scripType;
  * <p>
  * </p>
  * 
- * @since 2016-01-12
  * @author Georgi Iliev
- * @version 1.0
  */
 public class CommandFormats {
 
