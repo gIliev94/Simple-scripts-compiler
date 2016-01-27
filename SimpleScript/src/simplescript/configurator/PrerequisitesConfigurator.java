@@ -145,6 +145,7 @@ public class PrerequisitesConfigurator {
      * Performs typing of the path to Windows`s Users directory.</p>
      */
     private static void typePathToUsers() {
+	typewriter.delay(RobotDelays.INITIAL_DELAY);
 	typewriter.keyPress(KeyEvent.VK_SHIFT);
 	typewriter.keyPress(KeyEvent.VK_C);
 	typewriter.keyRelease(KeyEvent.VK_C);

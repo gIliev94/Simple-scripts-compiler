@@ -198,8 +198,8 @@ public class SimpleScript {
 		    }
 
 		    // Running commands
-		    CommandRuntime runtime = new CommandRuntime(executableCommands);
-		    runtime.run();
+		    CommandRuntime runtime = CommandRuntime.getInstance();
+		    runtime.run(executableCommands);
 
 		    showOutMsg("Successful execution!");
 
@@ -262,7 +262,8 @@ public class SimpleScript {
 
 		    // Deletes all files containing the tag - [src]
 		    File desktopFolder = new File(ConfigurationConstants.DESKTOP_FOLDER_PATH);
-		    Runtime.getRuntime().exec("cmd /c del [src]*.txt", null, desktopFolder);
+		    Runtime system = Runtime.getRuntime();
+		    system.exec("cmd /c del [src]*.txt", null, desktopFolder);
 
 		    showOutMsg("Excercise files removed!");
 		} catch (IOException ioe) {

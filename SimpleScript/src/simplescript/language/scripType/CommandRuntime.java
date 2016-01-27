@@ -2,13 +2,11 @@ package simplescript.language.scripType;
 
 import java.awt.AWTException;
 import java.io.IOException;
-
 import simplescript.language.scripType.commands.ICommand;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 /**
- * <h1>Helper class - encloses all user input commands and runs them in a
- * sequence.</h1>
+ * <h1>Executor class - a Singleton that schedules all user input commands to be
+ * ran in a sequence.</h1>
  * <p>
  * </p>
  * 
@@ -16,24 +14,36 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
  */
 public class CommandRuntime {
 
-    ICommand[] commands;
+    private static final CommandRuntime RUNTIME;
 
-    public CommandRuntime(ICommand[] userInputCommands) throws UnknownCommandException {
-	this.commands = userInputCommands;
+    private CommandRuntime() {
+    }
+
+    static {
+	RUNTIME = new CommandRuntime();
+    }
+
+    /**
+     * @return The only instance of the Singleton command runtime environment.
+     */
+    public static CommandRuntime getInstance() {
+	return RUNTIME;
     }
 
     /**
      * <h1><i>run</i></h1>
      * <p>
      * <p>
-     * {@code public void run()}
+     * {@code public void run(ICommand[] commands)}
      * </p>
-     * Runs all the commands one after the other. </p>
+     * Runs all the commands one after the other(sequentially). </p>
      * 
+     * @param commands
+     *            - the command sequence to be ran.
      * @throws AWTException
      * @throws IOException
      */
-    public void run() throws AWTException, IOException {
+    public void run(ICommand[] commands) throws AWTException, IOException {
 	if (commands == null)
 	    return;
 	for (int i = 0; i < commands.length; i++) {
