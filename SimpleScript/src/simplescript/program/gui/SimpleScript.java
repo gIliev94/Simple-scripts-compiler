@@ -88,7 +88,7 @@ public class SimpleScript {
 		    JOptionPane.showMessageDialog(null,
 			    ConfigurationConstants.NEWLINE + "Unexpected error: " + e.getMessage(), "ERROR",
 			    JOptionPane.ERROR_MESSAGE);
-		    LOG.error(e.getMessage(), e);
+		    LOG.error("Unexpected error: " + e.getMessage(), e);
 		}
 	    }
 
@@ -119,8 +119,9 @@ public class SimpleScript {
 		    }
 		}
 
-		if (!found)
+		if (!found) {
 		    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel");
+		}
 	    }
 	});
     }
@@ -207,10 +208,11 @@ public class SimpleScript {
 		    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
 			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error("Error with file/directory: ", ioe);
 		} catch (AWTException awte) {
 		    showErr("ERROR", "Automation\\Threading problem: " + awte.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
-		    LOG.error(awte.getMessage(), awte);
+		    LOG.error("Automation\\Threading problem: ", awte);
 		} catch (UnknownCommandException uce) {
 		    showErr("ERROR", uce.getMessage() + ConfigurationConstants.NEWLINE + ConfigurationConstants.NEWLINE
 			    + "/ REOPEN FILE AFTER YOU FIX THE ERROR /", JOptionPane.ERROR_MESSAGE);
@@ -218,19 +220,17 @@ public class SimpleScript {
 		} catch (NullPointerException npe) {
 		    showErr("ERROR", "Missing / not opened file!", JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
-		    LOG.error(npe.getMessage(), npe);
+		    LOG.info("Missing / not opened file!", npe);
 		} catch (ArrayIndexOutOfBoundsException aobe) {
-		    showErr("WARNING", "Empty file, no commands to run!!", JOptionPane.WARNING_MESSAGE);
+		    showErr("WARNING", "Empty file, no commands to run!", JOptionPane.WARNING_MESSAGE);
 		    showOutMsg("Compilation failed!");
-		    LOG.error(aobe.getMessage(), aobe);
+		    LOG.info("Empty file, no commands to run!", aobe);
 		} catch (NumberFormatException nfe) {
 		    showErr("ERROR", "Illegal format for color, use # prefix!", JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
 		} catch (IllegalArgumentException iae) {
-		    showErr("ERROR", "Key mapping not found on local keyboard!" + iae.getMessage(),
-			    JOptionPane.ERROR_MESSAGE);
+		    showErr("ERROR", iae.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
-		    LOG.error(iae.getMessage(), iae);
 		} catch (CommandFormatException cfe) {
 		    showErr("ERROR", cfe.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
@@ -270,6 +270,7 @@ public class SimpleScript {
 		    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
 			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Deletion failed!");
+		    LOG.error("Error with file/directory: ", ioe);
 		}
 	    }
 	});
@@ -333,10 +334,11 @@ public class SimpleScript {
 		    showErr("ERROR", "Error with file/directory: " + ConfigurationConstants.NEWLINE + ioe.getMessage(),
 			    JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
+		    LOG.error("Error with file/directory: " + codeToCompile.getName(), ioe);
 		} catch (NullPointerException npe) {
 		    showErr("ERROR", "Missing internal resource value: " + npe.getMessage(), JOptionPane.ERROR_MESSAGE);
 		    showOutMsg("Compilation failed!");
-		    LOG.error(npe.getMessage(), npe);
+		    LOG.error("Missing internal resource value: " + npe.getMessage(), npe);
 		} finally {
 		    try {
 			if (reader != null)

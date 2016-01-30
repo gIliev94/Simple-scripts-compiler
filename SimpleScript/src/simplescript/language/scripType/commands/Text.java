@@ -32,7 +32,7 @@ public class Text extends Command {
 
 	    key = KeyMapper.retrieveKey(keys[i]);
 
-	    if (Character.isUpperCase(keys[i])) {
+	    if (KeyMapper.SpecialSymbols.isSpecialSymbol(keys[i]) || Character.isUpperCase(keys[i])) {
 		robot.keyPress(KeyEvent.VK_SHIFT);
 		robot.keyPress(key);
 

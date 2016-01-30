@@ -4,6 +4,10 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
+import org.apache.log4j.Logger;
+
 import simplescript.configurator.ConfigurationConstants;
 
 /**
@@ -14,10 +18,15 @@ import simplescript.configurator.ConfigurationConstants;
  */
 public class KeyMapper {
 
+    private static final Logger LOG = Logger.getLogger(KeyMapper.class);
     /**
      * The local keyboard`s key mappings.
      */
-    private static final Map<Character, Integer> keyboardDictionary = populateKeyDictionary();
+    private static final Map<Character, Integer> KEYBOARD_SYMBOLS = populateKeyboardDictionary();
+    /**
+     * The local keyboard`s special keys mappings.
+     */
+    private static final Map<Character, Integer> SPECIAL_SYMBOLS = SpecialSymbols.populateSpecialSymbolsDictonary();
 
     /**
      * <h1><i>retrieveKey</i></h1>
@@ -33,11 +42,17 @@ public class KeyMapper {
      * @throws IllegalArgumentException
      */
     public static int retrieveKey(char key) throws IllegalArgumentException {
-	Integer keyCode = (Integer) keyboardDictionary.get(new Character(key));
+	Integer foundSymbol = KEYBOARD_SYMBOLS.get(new Character(key));
+	Integer foundSpecialSymbol = SPECIAL_SYMBOLS.get(new Character(key));
+	Integer keyCode = foundSymbol != null ? foundSymbol : foundSpecialSymbol;
 
 	if (keyCode == null) {
-	    throw new IllegalArgumentException(ConfigurationConstants.NEWLINE + "Cannot type character: [" + key
-		    + "] with this keyboard!");
+	    LOG.error(ConfigurationConstants.NEWLINE + "Cannot find mapping for character: [" + key
+		    + "] on this keyboard!");
+	    JOptionPane.showMessageDialog(null, ConfigurationConstants.NEWLINE + "Cannot find mapping for character: ["
+		    + key + "] on this keyboard!", "ERROR", JOptionPane.ERROR_MESSAGE);
+	    throw new IllegalArgumentException(ConfigurationConstants.NEWLINE + "Cannot find mapping for character: ["
+		    + key + "] on this keyboard!");
 	}
 
 	return keyCode.intValue();
@@ -53,7 +68,7 @@ public class KeyMapper {
      * 
      * @return
      */
-    private static Map<Character, Integer> populateKeyDictionary() {
+    private static Map<Character, Integer> populateKeyboardDictionary() {
 	Map<Character, Integer> keyDictionary = new HashMap<Character, Integer>(128);
 
 	keyDictionary.put(new Character('a'), new Integer(KeyEvent.VK_A));
@@ -112,17 +127,15 @@ public class KeyMapper {
 	keyDictionary.put(new Character('.'), new Integer(KeyEvent.VK_PERIOD));
 	keyDictionary.put(new Character(','), new Integer(KeyEvent.VK_COMMA));
 	keyDictionary.put(new Character('`'), new Integer(KeyEvent.VK_BACK_QUOTE));
-	keyDictionary.put(new Character('!'), new Integer(KeyEvent.VK_EXCLAMATION_MARK));
-	keyDictionary.put(new Character(':'), new Integer(KeyEvent.VK_COLON));
 	keyDictionary.put(new Character(';'), new Integer(KeyEvent.VK_SEMICOLON));
-	keyDictionary.put(new Character('@'), new Integer(KeyEvent.VK_AT));
-	keyDictionary.put(new Character('#'), new Integer(KeyEvent.VK_NUMBER_SIGN));
-	keyDictionary.put(new Character('$'), new Integer(KeyEvent.VK_DOLLAR));
-	keyDictionary.put(new Character('_'), new Integer(KeyEvent.VK_UNDERSCORE));
-	keyDictionary.put(new Character('+'), new Integer(KeyEvent.VK_PLUS));
+	keyDictionary.put(new Character('+'), new Integer(KeyEvent.VK_ADD));
 	keyDictionary.put(new Character('-'), new Integer(KeyEvent.VK_MINUS));
+	keyDictionary.put(new Character('*'), new Integer(KeyEvent.VK_MULTIPLY));
 	keyDictionary.put(new Character('/'), new Integer(KeyEvent.VK_SLASH));
 	keyDictionary.put(new Character('\\'), new Integer(KeyEvent.VK_BACK_SLASH));
+	keyDictionary.put(new Character('='), new Integer(KeyEvent.VK_EQUALS));
+	keyDictionary.put(new Character('['), new Integer(KeyEvent.VK_OPEN_BRACKET));
+	keyDictionary.put(new Character(']'), new Integer(KeyEvent.VK_CLOSE_BRACKET));
 	keyDictionary.put(new Character('0'), new Integer(KeyEvent.VK_0));
 	keyDictionary.put(new Character('1'), new Integer(KeyEvent.VK_1));
 	keyDictionary.put(new Character('2'), new Integer(KeyEvent.VK_2));
@@ -135,5 +148,44 @@ public class KeyMapper {
 	keyDictionary.put(new Character('9'), new Integer(KeyEvent.VK_9));
 
 	return keyDictionary;
+    }
+
+    public static class SpecialSymbols {
+
+	private static Map<Character, Integer> populateSpecialSymbolsDictonary() {
+	    Map<Character, Integer> specialKeyDictionary = new HashMap<Character, Integer>(64);
+
+	    specialKeyDictionary.put(new Character('!'), new Integer(KeyEvent.VK_1));
+	    specialKeyDictionary.put(new Character('@'), new Integer(KeyEvent.VK_2));
+	    specialKeyDictionary.put(new Character('#'), new Integer(KeyEvent.VK_3));
+	    specialKeyDictionary.put(new Character('$'), new Integer(KeyEvent.VK_4));
+	    specialKeyDictionary.put(new Character('%'), new Integer(KeyEvent.VK_5));
+	    specialKeyDictionary.put(new Character('^'), new Integer(KeyEvent.VK_6));
+	    specialKeyDictionary.put(new Character('&'), new Integer(KeyEvent.VK_7));
+	    specialKeyDictionary.put(new Character('*'), new Integer(KeyEvent.VK_8));
+	    specialKeyDictionary.put(new Character('_'), new Integer(KeyEvent.VK_MINUS));
+	    specialKeyDictionary.put(new Character('('), new Integer(KeyEvent.VK_9));
+	    specialKeyDictionary.put(new Character(')'), new Integer(KeyEvent.VK_0));
+	    specialKeyDictionary.put(new Character('~'), new Integer(KeyEvent.VK_BACK_QUOTE));
+	    specialKeyDictionary.put(new Character('{'), new Integer(KeyEvent.VK_OPEN_BRACKET));
+	    specialKeyDictionary.put(new Character('}'), new Integer(KeyEvent.VK_CLOSE_BRACKET));
+
+	    return specialKeyDictionary;
+	}
+
+	/**
+	 * Determines whether the provided character is a special symbol that
+	 * needs to be pressed with SHIFT.
+	 * 
+	 * @param character
+	 *            - the character to be evaluated.
+	 * @return TRUE if the character is special, FALSE if it isn`t.
+	 */
+	public static boolean isSpecialSymbol(Character character) {
+	    if (SPECIAL_SYMBOLS.get(character) == null) {
+		return false;
+	    }
+	    return true;
+	}
     }
 }
