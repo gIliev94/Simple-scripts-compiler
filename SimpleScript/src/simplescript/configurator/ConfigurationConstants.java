@@ -8,6 +8,9 @@ package simplescript.configurator;
  */
 public class ConfigurationConstants {
 
+    private ConfigurationConstants() {
+    }
+
     public static final String NEWLINE = System.getProperty("line.separator");
     public static final String CURRENT_USER = System.getenv("username");
     public static final String PROGRAM_FOLDER_PATH = System.getProperty("user.home") + "\\Desktop\\simpleScript\\";

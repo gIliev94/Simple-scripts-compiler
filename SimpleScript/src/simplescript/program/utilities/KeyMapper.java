@@ -18,6 +18,9 @@ import simplescript.configurator.ConfigurationConstants;
  */
 public class KeyMapper {
 
+    private KeyMapper() {
+    }
+
     private static final Logger LOG = Logger.getLogger(KeyMapper.class);
     /**
      * The local keyboard`s key mappings.

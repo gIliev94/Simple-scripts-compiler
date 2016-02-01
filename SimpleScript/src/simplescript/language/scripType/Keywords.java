@@ -8,6 +8,10 @@ package simplescript.language.scripType;
  * @author Georgi Iliev
  */
 public class Keywords {
+
+    private Keywords() {
+    }
+
     public static final String LINE = "line";
     public static final String POINT = "point";
     public static final String TEXT = "text";

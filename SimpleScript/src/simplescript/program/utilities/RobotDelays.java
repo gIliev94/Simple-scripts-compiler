@@ -8,6 +8,10 @@ package simplescript.program.utilities;
  * @author Georgi Iliev
  */
 public class RobotDelays {
+
+    private RobotDelays() {
+    }
+
     public static final int INITIAL_DELAY = 500;
     public static final int TYPING_DELAY = 100;
     public static final int VIEWING_DELAY = 300;
