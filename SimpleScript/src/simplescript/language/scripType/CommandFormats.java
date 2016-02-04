@@ -9,6 +9,9 @@ package simplescript.language.scripType;
  */
 public class CommandFormats {
 
+    private CommandFormats() {
+    }
+
     public static final String CLICK_FORMAT = "^CLICK\\sLEFT$|RIGHT$|LEFTDOUBLE$";
     public static final String MOVE_FORMAT = "^MOVE\\s[0-9]+\\s[0-9]+$";
     public static final String PRESS_FORMAT = "^PRESS\\s\\w+$|\\w+\\+\\w+$";
