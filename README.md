@@ -9,7 +9,12 @@ commands. The basic concept is a command begins with a keyword and then paramete
 
 
 
+
+
+
 Available commands in "scripType":
+
+
 ______________________________________________________________________________________________________________________________
 - "line"
   
