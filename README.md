@@ -7,6 +7,8 @@ The students have a predefined list of simple scenarios to automate via relative
 of a programming language("scripType") integrated in the application helping them do just that by providing a fascade of straightforward
 commands. The basic concept is a command begins with a keyword and then parameters, separated by whitespaces.
 
+
+
 Available commands in "scripType":
 ______________________________________________________________________________________________________________________________
 - "line"
