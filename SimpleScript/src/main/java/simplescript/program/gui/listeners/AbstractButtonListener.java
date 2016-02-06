@@ -7,7 +7,7 @@ import javax.swing.JTextArea;
 import simplescript.program.utilities.StringConstants;
 
 /**
- * Abstract model of a button action listener in SimpleScript�.
+ * Abstract model of a button action listener in SimpleScript.
  * 
  * @author Georgi Iliev
  *

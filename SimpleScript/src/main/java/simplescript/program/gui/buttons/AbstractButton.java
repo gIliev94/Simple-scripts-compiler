@@ -8,7 +8,7 @@ import simplescript.program.gui.listeners.AbstractButtonListener;
 import simplescript.program.utilities.FrameMetrics;
 
 /**
- * Abstract model of a button in SimpleScript�.
+ * Abstract model of a button in SimpleScript.
  * 
  * @author Georgi Iliev
  *

@@ -2,7 +2,7 @@ package simplescript.program.gui;
 
 /**
  * Interface - denotes the additional functionality of components within
- * SimpleScript™.
+ * SimpleScript.
  * 
  * @author Georgi Iliev
  *

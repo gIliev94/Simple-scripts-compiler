@@ -1,7 +1,7 @@
 package simplescript.language.scripType;
 
 /**
- * Resource class - denotes all legal command keywords.
+ * Resource class - denotes all legal command keywords in scripType.
  * 
  * @author Georgi Iliev
  * 

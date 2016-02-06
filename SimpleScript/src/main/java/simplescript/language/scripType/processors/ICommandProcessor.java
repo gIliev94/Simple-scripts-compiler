@@ -5,7 +5,8 @@ import java.io.IOException;
 import simplescript.language.scripType.commands.Command;
 
 /**
- * Interface describing core behaviour of a {@link CommandProcessor}.
+ * Interface describing core behaviour of a SimpleScript
+ * {@link CommandProcessor}.
  * 
  * @author Georgi Iliev
  */

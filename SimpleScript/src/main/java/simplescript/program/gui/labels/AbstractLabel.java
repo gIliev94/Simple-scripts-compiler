@@ -10,7 +10,7 @@ import simplescript.program.gui.ISimpleScriptComponent;
 import simplescript.program.utilities.FrameMetrics;
 
 /**
- * Abstract model of a label in SimpleScript�.
+ * Abstract model of a label in SimpleScript.
  * 
  * @author Georgi Iliev
  *

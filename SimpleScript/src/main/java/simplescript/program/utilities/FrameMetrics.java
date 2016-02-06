@@ -2,7 +2,7 @@ package simplescript.program.utilities;
 
 /**
  * Utility class - alternative to LAYOUT, sets up relative positions of
- * elements.
+ * components.
  * 
  * @author Georgi Iliev
  * 

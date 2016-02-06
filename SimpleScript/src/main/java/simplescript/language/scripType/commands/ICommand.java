@@ -4,7 +4,7 @@ import java.awt.AWTException;
 import java.io.IOException;
 
 /**
- * Interface describing core behavior of a SimpleScript™ {@link Command}.
+ * Interface describing core behavior of a SimpleScript {@link Command}.
  * 
  * @author Georgi Iliev
  *
