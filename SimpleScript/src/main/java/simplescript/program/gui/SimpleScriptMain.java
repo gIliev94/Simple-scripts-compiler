@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.log4j.Logger;
+import simplescript.configurator.PrerequisitesConfigurator;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.program.gui.backbone.Canvas;
 import simplescript.program.gui.backbone.FileChooser;
@@ -54,7 +55,7 @@ public class SimpleScriptMain {
 	try {
 	    Thread.sleep(RobotDelays.START_PROGRAM_DELAY);
 
-	    // PrerequisitesConfigurator.configurePrerequisites();
+	    PrerequisitesConfigurator.configurePrerequisites();
 
 	    Runnable mainExecutorThread = new Thread(new MainExecutorRunnable(), "main-executor-thread");
 
