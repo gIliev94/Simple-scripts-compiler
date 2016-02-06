@@ -1,4 +1,4 @@
-package test.syntax;
+package syntax;
 
 import junit.framework.TestCase;
 
