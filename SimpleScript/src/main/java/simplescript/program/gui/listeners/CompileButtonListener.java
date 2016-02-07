@@ -52,16 +52,16 @@ public class CompileButtonListener extends AbstractButtonListener {
 	    showOutMsg("Successful execution!");
 
 	} catch (IOException ioe) {
-	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getMessage(),
+	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 		    JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.error("Error with file/directory: ", ioe);
 	} catch (AWTException awte) {
-	    showErr("ERROR", "Automation / Threading problem: " + awte.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    showErr("ERROR", "Automation / Threading problem: " + awte.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.error("Automation / Threading problem: ", awte);
 	} catch (UnknownCommandException uce) {
-	    showErr("ERROR", uce.getMessage() + StringConstants.NEWLINE + StringConstants.NEWLINE
+	    showErr("ERROR", uce.getLocalizedMessage() + StringConstants.NEWLINE + StringConstants.NEWLINE
 		    + "/ REOPEN FILE AFTER YOU FIX THE ERROR /", JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	} catch (NullPointerException npe) {
@@ -76,10 +76,10 @@ public class CompileButtonListener extends AbstractButtonListener {
 	    showErr("ERROR", "Illegal format for color, use # prefix!", JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	} catch (IllegalArgumentException iae) {
-	    showErr("ERROR", iae.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    showErr("ERROR", iae.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	} catch (CommandFormatException cfe) {
-	    showErr("ERROR", cfe.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    showErr("ERROR", cfe.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	}
     }

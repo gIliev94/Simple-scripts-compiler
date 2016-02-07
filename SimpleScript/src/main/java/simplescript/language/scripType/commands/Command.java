@@ -31,8 +31,9 @@ public abstract class Command implements ICommand {
     public static boolean isValidCommand(String statement) throws WrongCommandException {
 	Field[] fields = Keywords.class.getDeclaredFields();
 	for (int i = 0; i < fields.length; i++) {
-	    if (statement.equalsIgnoreCase(fields[i].getName()))
+	    if (statement.equalsIgnoreCase(fields[i].getName())) {
 		return true;
+	    }
 	}
 	return false;
     }
@@ -46,30 +47,31 @@ public abstract class Command implements ICommand {
      * Validates the format of a user input command, in order for it to be
      * processed. </p>
      * 
-     * @param testableClassname
-     *            - the name of the class desribing the suspected user command.
-     * @param testableSt
-     *            �tement - the command statement from user source file.
+     * @param testableCommandKeyword
+     *            - the keyword of the user input command to be tested.
+     * @param testableStatement
+     *            - the command statement from user source file.
      * @return TRUE if the format is valid, FALSE if it is not.
+     * 
      */
-    public static boolean hasValidCommandFormat(String testableClassname, String testableStatement) {
+    public static boolean hasValidCommandFormat(String testableCommandKeyword, String testableStatement) {
 	String testablePattern = "dummyPattern";
 
-	if (testableClassname.equalsIgnoreCase(Keywords.LINE)) {
+	if (testableCommandKeyword.equalsIgnoreCase(Keywords.LINE)) {
 	    testablePattern = CommandFormats.LINE_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.POINT)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.POINT)) {
 	    testablePattern = CommandFormats.POINT_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.TEXT)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.TEXT)) {
 	    testablePattern = CommandFormats.TEXT_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.CLICK)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.CLICK)) {
 	    testablePattern = CommandFormats.CLICK_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.MOVE)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.MOVE)) {
 	    testablePattern = CommandFormats.MOVE_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.OPEN)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.OPEN)) {
 	    testablePattern = CommandFormats.OPEN_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.PRESS)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.PRESS)) {
 	    testablePattern = CommandFormats.PRESS_FORMAT;
-	} else if (testableClassname.equalsIgnoreCase(Keywords.DELAY)) {
+	} else if (testableCommandKeyword.equalsIgnoreCase(Keywords.DELAY)) {
 	    testablePattern = CommandFormats.DELAY_FORMAT;
 	}
 

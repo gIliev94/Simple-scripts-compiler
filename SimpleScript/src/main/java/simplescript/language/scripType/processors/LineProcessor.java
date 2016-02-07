@@ -21,11 +21,11 @@ public class LineProcessor extends CommandProcessor {
 
     public Command buildExecutableCommand() throws NumberFormatException {
 	Color lineColor = Color.decode(commandParts[1]);
-	boolean type = commandParts[6].equals("1");
 	Point startPoint = new Point(Integer.parseInt(commandParts[2]), Integer.parseInt(commandParts[3]));
 	Point endPoint = new Point(Integer.parseInt(commandParts[4]), Integer.parseInt(commandParts[5]));
+	boolean type = commandParts[6].equals("1");
 
-	return new Line(lineColor, startPoint, endPoint, type, processorCanvas);
+	return new Line(lineColor, startPoint, endPoint, type, canvas);
     }
 
 }

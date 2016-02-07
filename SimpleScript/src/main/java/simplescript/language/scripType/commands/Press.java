@@ -12,11 +12,11 @@ import simplescript.program.utilities.RobotDelays;
  * @author Georgi Iliev
  *
  */
-public class Shortcut extends Command {
+public class Press extends Command {
 
     protected String shortcut;
 
-    public Shortcut(String shortcutToExecute) {
+    public Press(String shortcutToExecute) {
 	this.shortcut = shortcutToExecute;
     }
 

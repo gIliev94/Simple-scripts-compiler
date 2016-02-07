@@ -23,7 +23,7 @@ public class PointProcessor extends CommandProcessor {
 	int pointX = Integer.parseInt(commandParts[2]);
 	int pointY = Integer.parseInt(commandParts[3]);
 
-	return new Point(pointColor, pointX, pointY, processorCanvas);
+	return new Point(pointColor, pointX, pointY, canvas);
     }
 
 }

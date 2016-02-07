@@ -3,7 +3,7 @@ package simplescript.language.scripType.processors;
 import java.awt.AWTException;
 import java.io.IOException;
 import simplescript.language.scripType.commands.Command;
-import simplescript.language.scripType.commands.Shortcut;
+import simplescript.language.scripType.commands.Press;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 /**
@@ -12,14 +12,14 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
  * @author Georgi Iliev
  *
  */
-public class ShortcutProcessor extends CommandProcessor {
+public class PressProcessor extends CommandProcessor {
 
-    public ShortcutProcessor(String commandStatement) throws UnknownCommandException {
+    public PressProcessor(String commandStatement) throws UnknownCommandException {
 	super(commandStatement);
     }
 
     public Command buildExecutableCommand() throws AWTException, IOException {
-	return new Shortcut(commandParts[1]);
+	return new Press(commandParts[1]);
     }
 
 }

@@ -56,22 +56,22 @@ public class PrerequisitesConfigurator {
 	    createSrcFiles();
 
 	} catch (IOException ioe) {
-	    showErr("ERROR", "Error with file/directory: " + StringConstants.NEWLINE + ioe.getMessage(),
+	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 		    JOptionPane.ERROR_MESSAGE);
-	    LOG.warn("Error with file/directory: ", ioe);
+	    LOG.warn("Error with file / directory: ", ioe);
 	} catch (AWTException awte) {
-	    showErr("ERROR", "Automation/Threading problem: " + awte.getMessage(), JOptionPane.ERROR_MESSAGE);
-	    LOG.error(awte.getMessage(), awte);
+	    showErr("ERROR", "Automation / Threading problem: " + awte.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+	    LOG.error("Automation / Threading problem: ", awte);
 	} catch (Exception e) {
-	    showErr("ERROR", "Unexpected error: " + e.getMessage(), JOptionPane.ERROR_MESSAGE);
-	    LOG.error(e.getMessage(), e);
+	    showErr("ERROR", "Unexpected error: " + e.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+	    LOG.error("Unexpected error: ", e);
 	} finally {
 	    try {
 		cleanup();
 	    } catch (IOException ioe) {
-		showErr("ERROR", "Error with file/directory: " + StringConstants.NEWLINE + ioe.getMessage(),
+		showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 			JOptionPane.ERROR_MESSAGE);
-		LOG.warn("Error with file/directory: ", ioe);
+		LOG.warn("Error with file / directory: ", ioe);
 	    }
 	}
     }

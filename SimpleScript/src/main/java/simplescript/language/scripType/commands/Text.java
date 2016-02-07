@@ -44,7 +44,9 @@ public class Text extends Command {
 		robot.keyPress(key);
 		robot.keyRelease(key);
 	    }
+
 	}
+
     }
 
     @Override

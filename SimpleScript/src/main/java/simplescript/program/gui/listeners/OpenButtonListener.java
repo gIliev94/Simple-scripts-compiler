@@ -11,7 +11,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import simplescript.program.gui.SimpleScriptMain;
-import simplescript.program.gui.backbone.FileChooser;
 import simplescript.program.utilities.StringConstants;
 
 /**
@@ -22,13 +21,19 @@ import simplescript.program.utilities.StringConstants;
  */
 public class OpenButtonListener extends AbstractButtonListener {
 
-    FileChooser fileChooser;
+    JFileChooser fileChooser;
     CompileButtonListener compileListener;
 
-    public OpenButtonListener(JTextArea area, FileChooser fileChooser, CompileButtonListener compileListener) {
+    public OpenButtonListener(JTextArea area, JFileChooser fileChooser, AbstractButtonListener compileListener) {
 	super(area);
-	this.fileChooser = fileChooser;
-	this.compileListener = compileListener;
+
+	if (!(compileListener instanceof CompileButtonListener)) {
+	    throw new RuntimeException("Invalid button listener!");
+	} else {
+	    this.fileChooser = fileChooser;
+	    this.compileListener = (CompileButtonListener) compileListener;
+	}
+
     }
 
     @Override
@@ -74,21 +79,21 @@ public class OpenButtonListener extends AbstractButtonListener {
 	    showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.info("File not found");
 	} catch (IOException ioe) {
-	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getMessage(),
+	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 		    JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.error("Error with file / directory: " + codeToCompile.getName(), ioe);
 	} catch (NullPointerException npe) {
-	    showErr("ERROR", "Missing internal resource value: " + npe.getMessage(), JOptionPane.ERROR_MESSAGE);
+	    showErr("ERROR", "Missing internal resource value: " + npe.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
-	    SimpleScriptMain.LOG.error("Missing internal resource value: " + npe.getMessage(), npe);
+	    SimpleScriptMain.LOG.error("Missing internal resource value: " + npe.getLocalizedMessage(), npe);
 	} finally {
 	    try {
 		if (reader != null) {
 		    reader.close();
 		}
 	    } catch (IOException ioe) {
-		showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getMessage(),
+		showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 			JOptionPane.ERROR_MESSAGE);
 		showOutMsg("Compilation failed!");
 		SimpleScriptMain.LOG.warn("Error with file / directory: ", ioe);

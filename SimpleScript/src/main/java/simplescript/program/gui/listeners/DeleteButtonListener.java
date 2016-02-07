@@ -32,7 +32,7 @@ public class DeleteButtonListener extends AbstractButtonListener {
 
 	    showOutMsg("Excercise files removed!");
 	} catch (IOException ioe) {
-	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getMessage(),
+	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 		    JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Deletion failed!");
 	    SimpleScriptMain.LOG.error("Error with file / directory: ", ioe);

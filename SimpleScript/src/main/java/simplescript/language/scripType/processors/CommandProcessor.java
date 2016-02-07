@@ -18,13 +18,13 @@ public abstract class CommandProcessor implements ICommandProcessor {
 
     protected String commandString;
     protected String[] commandParts;
-    protected Canvas processorCanvas;
+    protected Canvas canvas;
 
     public CommandProcessor(String commandStatement, Canvas canvasPanel) throws UnknownCommandException {
 	if (commandStatement != null && canvasPanel != null) {
 	    this.commandString = commandStatement;
 	    this.commandParts = commandString.split(StringConstants.WHITESPACE);
-	    this.processorCanvas = canvasPanel;
+	    this.canvas = canvasPanel;
 	}
     }
 
@@ -107,7 +107,7 @@ public abstract class CommandProcessor implements ICommandProcessor {
 	    return new OpenProcessor(commandStatement);
 
 	} else if (command.equalsIgnoreCase(Keywords.PRESS)) {
-	    return new ShortcutProcessor(commandStatement);
+	    return new PressProcessor(commandStatement);
 
 	} else if (command.equalsIgnoreCase(Keywords.DELAY)) {
 	    return new DelayProcessor(commandStatement);

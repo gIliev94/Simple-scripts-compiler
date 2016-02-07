@@ -6,7 +6,9 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import org.apache.log4j.Logger;
@@ -17,14 +19,17 @@ import simplescript.program.gui.backbone.FileChooser;
 import simplescript.program.gui.backbone.Frame;
 import simplescript.program.gui.backbone.OutputArea;
 import simplescript.program.gui.backbone.TxtFileFilter;
+import simplescript.program.gui.buttons.AbstractButton;
 import simplescript.program.gui.buttons.ClearButton;
 import simplescript.program.gui.buttons.CompileButton;
 import simplescript.program.gui.buttons.DeleteButton;
 import simplescript.program.gui.buttons.ExitButton;
 import simplescript.program.gui.buttons.OpenButton;
+import simplescript.program.gui.labels.AbstractLabel;
 import simplescript.program.gui.labels.FrameSizeLabel;
 import simplescript.program.gui.labels.ResolutionLabel;
 import simplescript.program.gui.labels.TitleLabel;
+import simplescript.program.gui.listeners.AbstractButtonListener;
 import simplescript.program.gui.listeners.ClearButtonListener;
 import simplescript.program.gui.listeners.CompileButtonListener;
 import simplescript.program.gui.listeners.DeleteButtonListener;
@@ -45,7 +50,7 @@ public class SimpleScriptMain {
 
     public static final Logger LOG = Logger.getLogger(SimpleScriptMain.class);
 
-    Frame frame;
+    JFrame frame;
 
     /**
      * Launch the application.
@@ -62,9 +67,10 @@ public class SimpleScriptMain {
 	    EventQueue.invokeAndWait(mainExecutorThread);
 
 	} catch (Exception e) {
-	    JOptionPane.showMessageDialog(null, StringConstants.NEWLINE + "Unexpected error: " + e.getMessage(),
-		    "ERROR", JOptionPane.ERROR_MESSAGE);
-	    LOG.error("Unexpected error: " + e.getMessage(), e);
+	    JOptionPane.showMessageDialog(null,
+		    StringConstants.NEWLINE + "Unexpected error: " + e.getLocalizedMessage(), "ERROR",
+		    JOptionPane.ERROR_MESSAGE);
+	    LOG.error("Unexpected error: " + e.getLocalizedMessage(), e);
 	}
     }
 
@@ -134,41 +140,41 @@ public class SimpleScriptMain {
 	final Canvas canvasPanel = new Canvas(frameMetrics.width, frameMetrics.height);
 
 	String resolutionLabelText = "Resolution: " + display.getResolution();
-	final ResolutionLabel resolutionLabel = new ResolutionLabel(resolutionLabelText, frameMetrics);
+	final AbstractLabel resolutionLabel = new ResolutionLabel(resolutionLabelText, frameMetrics);
 	canvasPanel.add(resolutionLabel);
 
 	String frameSizeLabeText = "Window Size: " + frameMetrics.getFrameSize();
-	final FrameSizeLabel frameSizeLabel = new FrameSizeLabel(frameSizeLabeText, frameMetrics);
+	final AbstractLabel frameSizeLabel = new FrameSizeLabel(frameSizeLabeText, frameMetrics);
 	canvasPanel.add(frameSizeLabel);
 
 	Image icon = new ImageIcon(this.getClass().getResource("/simpleScriptLogo.png")).getImage();
 	frame = new Frame(icon, frameMetrics);
 	frame.getContentPane().add(canvasPanel);
 
-	final OutputArea outputArea = new OutputArea(frameMetrics, canvasPanel);
+	final JTextArea outputArea = new OutputArea(frameMetrics, canvasPanel);
 
-	final CompileButtonListener compileListener = new CompileButtonListener(outputArea, canvasPanel);
-	final CompileButton btnCompile = new CompileButton("RUN", frameMetrics, compileListener);
+	final AbstractButtonListener compileListener = new CompileButtonListener(outputArea, canvasPanel);
+	final AbstractButton btnCompile = new CompileButton("RUN", frameMetrics, compileListener);
 	canvasPanel.add(btnCompile);
 
-	final ClearButtonListener clearListener = new ClearButtonListener(outputArea, canvasPanel);
-	final ClearButton btnClear = new ClearButton("CLEAR", frameMetrics, clearListener);
+	final AbstractButtonListener clearListener = new ClearButtonListener(outputArea, canvasPanel);
+	final AbstractButton btnClear = new ClearButton("CLEAR", frameMetrics, clearListener);
 	canvasPanel.add(btnClear);
 
-	final DeleteButtonListener deleteListener = new DeleteButtonListener(outputArea);
-	final DeleteButton btnDelete = new DeleteButton("DELETE", frameMetrics, deleteListener);
+	final AbstractButtonListener deleteListener = new DeleteButtonListener(outputArea);
+	final AbstractButton btnDelete = new DeleteButton("DELETE", frameMetrics, deleteListener);
 	canvasPanel.add(btnDelete);
 
-	final ExitButtonListener exitListener = new ExitButtonListener(outputArea, frame);
-	final ExitButton btnExit = new ExitButton("EXIT", frameMetrics, exitListener);
+	final AbstractButtonListener exitListener = new ExitButtonListener(outputArea, frame);
+	final AbstractButton btnExit = new ExitButton("EXIT", frameMetrics, exitListener);
 	canvasPanel.add(btnExit);
 
 	final FileChooser fileChooser = new FileChooser(new TxtFileFilter(), frameMetrics);
-	final OpenButtonListener openListener = new OpenButtonListener(outputArea, fileChooser, compileListener);
-	final OpenButton btnOpen = new OpenButton("OPEN", frameMetrics, openListener);
+	final AbstractButtonListener openListener = new OpenButtonListener(outputArea, fileChooser, compileListener);
+	final AbstractButton btnOpen = new OpenButton("OPEN", frameMetrics, openListener);
 	canvasPanel.add(btnOpen);
 
-	final TitleLabel titleLabel = new TitleLabel("simpleScript", frameMetrics, canvasPanel);
+	final AbstractLabel titleLabel = new TitleLabel("simpleScript", frameMetrics, canvasPanel);
 	canvasPanel.add(titleLabel);
     }
 
