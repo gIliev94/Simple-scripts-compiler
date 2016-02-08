@@ -4,19 +4,12 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
 import junit.framework.TestCase;
-import simplescript.language.scripType.Keywords;
-import simplescript.language.scripType.processors.ClickProcessor;
 import simplescript.language.scripType.processors.CommandProcessor;
-import simplescript.language.scripType.processors.DelayProcessor;
-import simplescript.language.scripType.processors.LineProcessor;
-import simplescript.language.scripType.processors.MoveProcessor;
-import simplescript.language.scripType.processors.OpenProcessor;
-import simplescript.language.scripType.processors.PointProcessor;
-import simplescript.language.scripType.processors.PressProcessor;
-import simplescript.language.scripType.processors.TextProcessor;
 import simplescript.program.gui.SimpleScriptMain;
 import simplescript.program.utilities.StringConstants;
+import testdata.DispatchmentTestData;
 
 /**
  * Unit test case for correct command processor dispatching.
@@ -27,27 +20,20 @@ import simplescript.program.utilities.StringConstants;
 public class ProcessorDispatchmentTest extends TestCase {
 
     public void testGetProcessor() {
-	String testName = this.getClass().getSimpleName();
-
-	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
-
 	Map<String, CommandProcessor> testData = new HashMap<String, CommandProcessor>(8);
-	testData.put(Keywords.LINE, new LineProcessor(null, null));
-	testData.put(Keywords.POINT, new PointProcessor(null, null));
-	testData.put(Keywords.MOVE, new MoveProcessor(null));
-	testData.put(Keywords.CLICK, new ClickProcessor(null));
-	testData.put(Keywords.DELAY, new DelayProcessor(null));
-	testData.put(Keywords.OPEN, new OpenProcessor(null));
-	testData.put(Keywords.PRESS, new PressProcessor(null));
-	testData.put(Keywords.TEXT, new TextProcessor(null));
+	DispatchmentTestData.loadExpectedDispatchment(testData);
 
 	CommandProcessor expectedProcessor;
 	CommandProcessor dispatchedProcessor;
 
-	String command;
-	String expectedQname;
-	String dispatchedQname;
-	String processorName;
+	String command = StringConstants.EMPTY_STRING;
+	String expectedQname = StringConstants.EMPTY_STRING;
+	String dispatchedQname = StringConstants.EMPTY_STRING;
+	String processorName = StringConstants.EMPTY_STRING;
+
+	String testName = this.getClass().getSimpleName();
+
+	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
 	for (Entry<String, CommandProcessor> testItem : testData.entrySet()) {
 	    command = testItem.getKey();
@@ -65,7 +51,7 @@ public class ProcessorDispatchmentTest extends TestCase {
 	    }
 	}
 
-	SimpleScriptMain.LOG.info("END: " + testName + StringConstants.WHITESPACE + Calendar.getInstance().getTime());
+	SimpleScriptMain.LOG.info("END: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
     }
 
 }

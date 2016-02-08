@@ -5,14 +5,14 @@ import junit.framework.TestCase;
 /**
  * TO BE IMPLEMENTED:
  * 
- * Unit test case for incorrect command scenario.
+ * Unit test case for incorrect format of command scenario.
  * 
  * @author Georgi Iliev
  *
  */
-public class WrongCommandTest extends TestCase {
+public class InvalidFromatOfCommandTest extends TestCase {
 
-    public void testIsValidCommand() {
+    public void testHasValidCommandFormat() {
 	fail("Not yet implemented");
     }
 
