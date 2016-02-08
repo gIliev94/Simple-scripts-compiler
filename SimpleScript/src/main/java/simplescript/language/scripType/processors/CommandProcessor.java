@@ -115,8 +115,6 @@ public abstract class CommandProcessor implements ICommandProcessor {
 	    return new MoveProcessor(commandStatement);
 
 	} else {
-	    // throw new
-	    // UnknownCommandException(StringConstants.quote(commandKeyword));
 	    return null;
 	}
     }
