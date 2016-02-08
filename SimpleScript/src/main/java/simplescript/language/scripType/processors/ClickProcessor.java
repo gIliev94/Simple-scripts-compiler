@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import simplescript.language.scripType.commands.Click;
 import simplescript.language.scripType.commands.Command;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 /**
  * Implementation of a processor for scripType command - "CLICK".
@@ -14,7 +13,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
  */
 public class ClickProcessor extends CommandProcessor {
 
-    public ClickProcessor(String commandStatement) throws UnknownCommandException {
+    public ClickProcessor(String commandStatement) {
 	super(commandStatement);
     }
 

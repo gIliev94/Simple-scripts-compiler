@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.commands.Open;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 /**
  * Implementation of a processor for the scripType command - "OPEN".
@@ -14,7 +13,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
  */
 public class OpenProcessor extends CommandProcessor {
 
-    public OpenProcessor(String commandStatement) throws UnknownCommandException {
+    public OpenProcessor(String commandStatement) {
 	super(commandStatement);
     }
 

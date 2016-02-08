@@ -7,11 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import simplescript.language.scripType.CommandRuntime;
 import simplescript.language.scripType.commands.Command;
-import simplescript.language.scripType.commands.ICommand;
 import simplescript.language.scripType.exceptions.CommandFormatException;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.language.scripType.processors.CommandProcessor;
-import simplescript.language.scripType.processors.ICommandProcessor;
 import simplescript.program.gui.SimpleScriptMain;
 import simplescript.program.gui.backbone.Canvas;
 import simplescript.program.utilities.StringConstants;
@@ -36,18 +34,25 @@ public class CompileButtonListener extends AbstractButtonListener {
     public void actionPerformed(ActionEvent arg0) {
 	try {
 
-	    ICommandProcessor processor;
-	    ICommand[] executableCommands = new Command[separateCommands.length];
+	    CommandProcessor processor;
+	    Command[] executableCommands = new Command[separateCommands.length];
 
 	    // Processing and building commands
+	    String commandStatement = StringConstants.EMPTY_STRING;
+
 	    for (int i = 0; i < separateCommands.length; i++) {
-		processor = CommandProcessor.getProcessor((String) separateCommands[i], canvasPanel);
+		commandStatement = (String) separateCommands[i];
+
+		processor = CommandProcessor.getProcessor(commandStatement, canvasPanel);
+
+		CommandProcessor.evaluateCommand(commandStatement);
+
 		executableCommands[i] = processor.buildExecutableCommand();
 	    }
 
 	    // Running commands
 	    CommandRuntime runtime = CommandRuntime.getInstance();
-	    runtime.run(executableCommands);
+	    runtime.runScript(executableCommands);
 
 	    showOutMsg("Successful execution!");
 

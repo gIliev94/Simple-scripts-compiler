@@ -6,6 +6,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -169,7 +170,7 @@ public class SimpleScriptMain {
 	final AbstractButton btnExit = new ExitButton("EXIT", frameMetrics, exitListener);
 	canvasPanel.add(btnExit);
 
-	final FileChooser fileChooser = new FileChooser(new TxtFileFilter(), frameMetrics);
+	final JFileChooser fileChooser = new FileChooser(new TxtFileFilter(), frameMetrics);
 	final AbstractButtonListener openListener = new OpenButtonListener(outputArea, fileChooser, compileListener);
 	final AbstractButton btnOpen = new OpenButton("OPEN", frameMetrics, openListener);
 	canvasPanel.add(btnOpen);

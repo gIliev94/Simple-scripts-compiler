@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.commands.Move;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
 
 /**
  * Implementation of a processor for the scripType command - "MOVE".
@@ -14,7 +13,7 @@ import simplescript.language.scripType.exceptions.UnknownCommandException;
  */
 public class MoveProcessor extends CommandProcessor {
 
-    public MoveProcessor(String commandStatement) throws UnknownCommandException {
+    public MoveProcessor(String commandStatement) {
 	super(commandStatement);
     }
 

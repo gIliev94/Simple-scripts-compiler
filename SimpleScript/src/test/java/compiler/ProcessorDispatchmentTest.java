@@ -1,21 +1,24 @@
 package compiler;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
-
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import junit.framework.TestCase;
-import simplescript.language.scripType.exceptions.CommandFormatException;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
+import simplescript.language.scripType.Keywords;
+import simplescript.language.scripType.processors.ClickProcessor;
 import simplescript.language.scripType.processors.CommandProcessor;
+import simplescript.language.scripType.processors.DelayProcessor;
+import simplescript.language.scripType.processors.LineProcessor;
+import simplescript.language.scripType.processors.MoveProcessor;
+import simplescript.language.scripType.processors.OpenProcessor;
+import simplescript.language.scripType.processors.PointProcessor;
+import simplescript.language.scripType.processors.PressProcessor;
+import simplescript.language.scripType.processors.TextProcessor;
 import simplescript.program.gui.SimpleScriptMain;
 import simplescript.program.utilities.StringConstants;
-import syntax.TestCommandStatements;
 
 /**
- * TO BE IMPLEMENTED:
- * 
  * Unit test case for correct command processor dispatching.
  * 
  * @author Georgi Iliev
@@ -24,52 +27,45 @@ import syntax.TestCommandStatements;
 public class ProcessorDispatchmentTest extends TestCase {
 
     public void testGetProcessor() {
-	SimpleScriptMain.LOG.info("Initiated ProcessorDispatchmentTest: " + Calendar.getInstance().getTime());
+	String testName = this.getClass().getSimpleName();
 
-	List<String> validStatements = new ArrayList<String>();
-	TestCommandStatements.loadValidStatements(validStatements);
+	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
-	List<String> invalidStatements = new ArrayList<String>();
-	TestCommandStatements.loadInvalidStatements(invalidStatements);
+	Map<String, CommandProcessor> testData = new HashMap<String, CommandProcessor>(8);
+	testData.put(Keywords.LINE, new LineProcessor(null, null));
+	testData.put(Keywords.POINT, new PointProcessor(null, null));
+	testData.put(Keywords.MOVE, new MoveProcessor(null));
+	testData.put(Keywords.CLICK, new ClickProcessor(null));
+	testData.put(Keywords.DELAY, new DelayProcessor(null));
+	testData.put(Keywords.OPEN, new OpenProcessor(null));
+	testData.put(Keywords.PRESS, new PressProcessor(null));
+	testData.put(Keywords.TEXT, new TextProcessor(null));
 
-	try {
-	    SimpleScriptMain.LOG.info("Initiating POSITIVE case for statements...");
-	    performTest(validStatements);
-	    SimpleScriptMain.LOG.info("Passed POSITIVE case for statements!");
+	CommandProcessor expectedProcessor;
+	CommandProcessor dispatchedProcessor;
 
-	    SimpleScriptMain.LOG.info("Initiating NEGATIVE case for statements...");
-	    performTest(invalidStatements);
-	    SimpleScriptMain.LOG.info("Passed NEGATIVE test case for statements!");
+	String command;
+	String expectedQname;
+	String dispatchedQname;
+	String processorName;
 
-	} catch (UnknownCommandException e) {
-	    SimpleScriptMain.LOG.error("Invalid command in TEST: ", e);
-	    fail("Invalid command detected!");
-	} catch (CommandFormatException e) {
-	    SimpleScriptMain.LOG.error("Ivalid format of command in TEST: ", e);
-	    fail("Ivalid format of command detected!");
-	}
+	for (Entry<String, CommandProcessor> testItem : testData.entrySet()) {
+	    command = testItem.getKey();
+	    expectedProcessor = testItem.getValue();
 
-	SimpleScriptMain.LOG.info("Passed ProcessorDispatchmentTest: " + Calendar.getInstance().getTime());
-    }
+	    dispatchedProcessor = CommandProcessor.getProcessor(command, null);
 
-    private void performTest(List<String> statements) throws UnknownCommandException, CommandFormatException {
-	CommandProcessor processor;
-	Iterator<String> iterator = statements.iterator();
+	    expectedQname = expectedProcessor.getClass().getName();
+	    dispatchedQname = dispatchedProcessor.getClass().getName();
 
-	while (iterator.hasNext()) {
-	    String statement = iterator.next();
-	    String command = statement.split(StringConstants.WHITESPACE)[0];
+	    processorName = dispatchedProcessor.getClass().getSimpleName();
 
-	    processor = CommandProcessor.getProcessor(statement, null);
-
-	    String processorName = processor.getClass().getSimpleName().toLowerCase();
-
-	    if (!processorName.startsWith(command)) {
+	    if (expectedQname != dispatchedQname) {
 		fail("Invalid command processor dispatched: " + processorName + " for command: " + command + "!");
 	    }
-
 	}
 
+	SimpleScriptMain.LOG.info("END: " + testName + StringConstants.WHITESPACE + Calendar.getInstance().getTime());
     }
 
 }

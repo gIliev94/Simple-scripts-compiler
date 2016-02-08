@@ -20,7 +20,7 @@ public abstract class CommandProcessor implements ICommandProcessor {
     protected String[] commandParts;
     protected Canvas canvas;
 
-    public CommandProcessor(String commandStatement, Canvas canvasPanel) throws UnknownCommandException {
+    public CommandProcessor(String commandStatement, Canvas canvasPanel) {
 	if (commandStatement != null && canvasPanel != null) {
 	    this.commandString = commandStatement;
 	    this.commandParts = commandString.split(StringConstants.WHITESPACE);
@@ -28,7 +28,7 @@ public abstract class CommandProcessor implements ICommandProcessor {
 	}
     }
 
-    public CommandProcessor(String commandStatement) throws UnknownCommandException {
+    public CommandProcessor(String commandStatement) {
 	if (commandStatement != null) {
 	    this.commandString = commandStatement;
 	    this.commandParts = commandString.split(StringConstants.WHITESPACE);
@@ -39,35 +39,35 @@ public abstract class CommandProcessor implements ICommandProcessor {
      * <h1><i>evaluateCommand</i></h1>
      * <p>
      * <p>
-     * {@code private static void evaluateCommand(String commandStatement, String command)}
+     * {@code public static void evaluateCommand(String commandStatement, String command)}
      * </p>
      * Validates a command`s correct position, keyword and format. </p>
      * 
      * @param commandStatement
      *            - the full command statement, the command plus the parameters.
-     * @param command
+     * @param commandKeyword
      *            - the command keyword that the statement is supposed to begin
      *            with.
      * @throws CommandFormatException
      * @throws WrongCommandException
      * @throws UnknownCommandException
      */
-    private static void evaluateCommand(String commandStatement, String command) throws CommandFormatException,
-	    WrongCommandException, UnknownCommandException {
+    public static void evaluateCommand(String commandStatement) throws CommandFormatException, WrongCommandException,
+	    UnknownCommandException {
+	String commandKeyword = commandStatement.split(StringConstants.WHITESPACE)[0];
 
-	if (command.equalsIgnoreCase(StringConstants.EMPTY_STRING)) {
-	    throw new UnknownCommandException(StringConstants.quote(command) + StringConstants.NEWLINE
+	if (commandKeyword.equalsIgnoreCase(StringConstants.EMPTY_STRING)) {
+	    throw new UnknownCommandException(StringConstants.quote(commandKeyword) + StringConstants.NEWLINE
 		    + "Command should be the first line of text file!");
 	}
 
-	if (!Command.isValidCommand(command)) {
-	    throw new WrongCommandException(StringConstants.quote(command));
+	if (!Command.isValidCommand(commandKeyword)) {
+	    throw new WrongCommandException(StringConstants.quote(commandKeyword));
 	}
 
-	if (!Command.hasValidCommandFormat(command, commandStatement)) {
-	    throw new CommandFormatException(StringConstants.quote(command));
+	if (!Command.hasValidFormat(commandKeyword, commandStatement)) {
+	    throw new CommandFormatException(StringConstants.quote(commandKeyword));
 	}
-
     }
 
     /**
@@ -87,40 +87,37 @@ public abstract class CommandProcessor implements ICommandProcessor {
      * @throws UnknownCommandException
      * @throws CommandFormatException
      */
-    public static CommandProcessor getProcessor(String commandStatement, Canvas canvasPanel)
-	    throws UnknownCommandException, CommandFormatException {
+    public static CommandProcessor getProcessor(String commandStatement, Canvas canvasPanel) {
+	String commandKeyword = commandStatement.split(StringConstants.WHITESPACE)[0];
 
-	String command = commandStatement.split(StringConstants.WHITESPACE)[0];
-
-	evaluateCommand(commandStatement, command);
-
-	if (command.equalsIgnoreCase(Keywords.LINE)) {
+	if (commandKeyword.equalsIgnoreCase(Keywords.LINE)) {
 	    return new LineProcessor(commandStatement, canvasPanel);
 
-	} else if (command.equalsIgnoreCase(Keywords.POINT)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.POINT)) {
 	    return new PointProcessor(commandStatement, canvasPanel);
 
-	} else if (command.equalsIgnoreCase(Keywords.TEXT)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.TEXT)) {
 	    return new TextProcessor(commandStatement);
 
-	} else if (command.equalsIgnoreCase(Keywords.OPEN)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.OPEN)) {
 	    return new OpenProcessor(commandStatement);
 
-	} else if (command.equalsIgnoreCase(Keywords.PRESS)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.PRESS)) {
 	    return new PressProcessor(commandStatement);
 
-	} else if (command.equalsIgnoreCase(Keywords.DELAY)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.DELAY)) {
 	    return new DelayProcessor(commandStatement);
 
-	} else if (command.equalsIgnoreCase(Keywords.CLICK)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.CLICK)) {
 	    return new ClickProcessor(commandStatement);
 
-	} else if (command.equalsIgnoreCase(Keywords.MOVE)) {
+	} else if (commandKeyword.equalsIgnoreCase(Keywords.MOVE)) {
 	    return new MoveProcessor(commandStatement);
 
 	} else {
-
-	    throw new UnknownCommandException(StringConstants.quote(command));
+	    // throw new
+	    // UnknownCommandException(StringConstants.quote(commandKeyword));
+	    return null;
 	}
     }
 

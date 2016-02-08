@@ -33,7 +33,7 @@ public class CommandRuntime {
      * <h1><i>run</i></h1>
      * <p>
      * <p>
-     * {@code public void run(ICommand[] commands)}
+     * {@code public void runScript(ICommand[] commands)}
      * </p>
      * Runs all the commands one after the other(sequentially). </p>
      * 
@@ -42,7 +42,7 @@ public class CommandRuntime {
      * @throws AWTException
      * @throws IOException
      */
-    public void run(ICommand[] commands) throws AWTException, IOException {
+    public void runScript(ICommand[] commands) throws AWTException, IOException {
 	if (commands == null)
 	    return;
 	for (int i = 0; i < commands.length; i++) {

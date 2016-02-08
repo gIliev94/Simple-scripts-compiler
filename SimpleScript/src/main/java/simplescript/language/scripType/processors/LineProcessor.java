@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Point;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.commands.Line;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.program.gui.backbone.Canvas;
 
 /**
@@ -15,7 +14,7 @@ import simplescript.program.gui.backbone.Canvas;
  */
 public class LineProcessor extends CommandProcessor {
 
-    public LineProcessor(String commandStatement, Canvas canvasPanel) throws UnknownCommandException {
+    public LineProcessor(String commandStatement, Canvas canvasPanel) {
 	super(commandStatement, canvasPanel);
     }
 

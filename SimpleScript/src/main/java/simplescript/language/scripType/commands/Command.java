@@ -39,10 +39,10 @@ public abstract class Command implements ICommand {
     }
 
     /**
-     * <h1><i>hasValidCommandFormat</i></h1>
+     * <h1><i>hasValidFormat</i></h1>
      * <p>
      * <p>
-     * {@code public static boolean hasValidCommandFormat(String testableClassname,String testableSt�tement))}
+     * {@code public static boolean hasValidFormat(String testableClassname,String testableSt�tement))}
      * </p>
      * Validates the format of a user input command, in order for it to be
      * processed. </p>
@@ -54,7 +54,7 @@ public abstract class Command implements ICommand {
      * @return TRUE if the format is valid, FALSE if it is not.
      * 
      */
-    public static boolean hasValidCommandFormat(String testableCommandKeyword, String testableStatement) {
+    public static boolean hasValidFormat(String testableCommandKeyword, String testableStatement) {
 	String testablePattern = "dummyPattern";
 
 	if (testableCommandKeyword.equalsIgnoreCase(Keywords.LINE)) {

@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.io.IOException;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.commands.Text;
-import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.program.utilities.StringConstants;
 
 /**
@@ -15,7 +14,7 @@ import simplescript.program.utilities.StringConstants;
  */
 public class TextProcessor extends CommandProcessor {
 
-    public TextProcessor(String commandStatement) throws UnknownCommandException {
+    public TextProcessor(String commandStatement) {
 	super(commandStatement);
     }
 
