@@ -1,6 +1,5 @@
 package testdata;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,20 +14,54 @@ public class CommandTestData {
     }
 
     /**
+     * Loads a collection of VALID command keywords, that are not case
+     * sensitive.
+     * 
+     * @param validCommands
+     */
+    public static void loadValidCommandKeywords(Set<String> validCommands) {
+	validCommands.add("line");
+	validCommands.add("point");
+	validCommands.add("move");
+	validCommands.add("click");
+	validCommands.add("delay");
+	validCommands.add("press");
+	validCommands.add("open");
+	validCommands.add("text");
+    }
+
+    /**
      * Loads a collection of INVALID command keywords, that are not case
+     * sensitive.
+     * 
+     * @param invalidCommands
+     */
+    public static void loadInvalidCommandKeywords(Set<String> invalidCommands) {
+	invalidCommands.add("mock");
+	invalidCommands.add("hover");
+	invalidCommands.add("moovit");
+	invalidCommands.add("terrorize");
+	invalidCommands.add("crouch");
+	invalidCommands.add("stay");
+	invalidCommands.add("alter");
+	invalidCommands.add("type");
+    }
+
+    /**
+     * Loads a collection of VALID command statements, that are not case
      * sensitive.
      * 
      * @param validStatements
      */
-    public static void loadInvalidCommandKeywords(Set<String> commands) {
-	commands.add("mock");
-	commands.add("hover");
-	commands.add("moovit");
-	commands.add("terrorize");
-	commands.add("crouch");
-	commands.add("stay");
-	commands.add("alter");
-	commands.add("type");
+    public static void loadValidStatements(Set<String> validStatements) {
+	validStatements.add("line #FF0000 400 400 320 400 0");
+	validStatements.add("point #FFFFFF 320 240");
+	validStatements.add("delay 3000");
+	validStatements.add("open cmd.exe");
+	validStatements.add("press CTRL+S");
+	validStatements.add("click left");
+	validStatements.add("move 1700 750");
+	validStatements.add("text It`s alright.");
     }
 
     /**
@@ -37,7 +70,7 @@ public class CommandTestData {
      * 
      * @param invalidStatements
      */
-    public static void loadInvalidStatements(List<String> invalidStatements) {
+    public static void loadInvalidStatements(Set<String> invalidStatements) {
 	invalidStatements.add("line FF0000 400 400 320 400 0");
 	invalidStatements.add("point #FFFFFF 320");
 	invalidStatements.add("delay3 3000");
@@ -45,7 +78,7 @@ public class CommandTestData {
 	invalidStatements.add("press CTRL+S twice");
 	invalidStatements.add("click 3");
 	invalidStatements.add("move 1700 750 200");
-	invalidStatements.add("text It`s alright. 4424");
+	invalidStatements.add("text ™This is invalid.☺");
     }
 
 }

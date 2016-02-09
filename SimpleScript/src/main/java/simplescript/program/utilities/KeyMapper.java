@@ -25,10 +25,10 @@ public class KeyMapper {
     private static final Map<Character, Integer> SPECIAL_SYMBOLS = SpecialSymbols.populateSpecialSymbolsDictonary();
 
     /**
-     * <h1><i>retrieveKey</i></h1>
+     * <h1><i>retrieveKeyCode</i></h1>
      * <p>
      * <p>
-     * {@code public static int retrieveKey(char key)}
+     * {@code public static int retrieveKeyCode(char key)}
      * </p>
      * Finds the key mapping value of a key and returns it. </p>
      * 
@@ -37,7 +37,7 @@ public class KeyMapper {
      * @return An integer value of the keyboard bound key.
      * @throws IllegalArgumentException
      */
-    public static int retrieveKey(char key) throws IllegalArgumentException {
+    public static int retrieveKeyCode(char key) throws IllegalArgumentException {
 	Integer foundSymbol = KEYBOARD_SYMBOLS.get(new Character(key));
 	Integer foundSpecialSymbol = SPECIAL_SYMBOLS.get(new Character(key));
 	Integer keyCode = foundSymbol != null ? foundSymbol : foundSpecialSymbol;

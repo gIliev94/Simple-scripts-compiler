@@ -3,32 +3,32 @@ package syntax;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
-import junit.framework.TestCase;
 import simplescript.language.scripType.commands.Command;
 import simplescript.program.gui.SimpleScriptMain;
 import simplescript.program.utilities.StringConstants;
 import testdata.CommandTestData;
+import junit.framework.TestCase;
 
 /**
- * Unit test case for invalid command scenario.
+ * Unit test case for valid format of command scenario.
  * 
  * @author Georgi Iliev
  *
  */
-public class InvalidCommandTest extends TestCase {
+public class ValidFromatOfCommandTest extends TestCase {
 
-    public void testIsValidCommand() {
-	Set<String> invalidCommandKeywords = new HashSet<String>(8);
-	CommandTestData.loadInvalidCommandKeywords(invalidCommandKeywords);
+    public void testHasValidCommandFormat() {
+	Set<String> validCommandStatements = new HashSet<String>(8);
+	CommandTestData.loadValidStatements(validCommandStatements);
 
 	String testName = this.getClass().getSimpleName();
 	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
-	for (String keyword : invalidCommandKeywords) {
-	    if (Command.hasValidCommandKeyword(keyword)) {
+	for (String statement : validCommandStatements) {
+
+	    if (!Command.hasValidFormat(statement)) {
 		fail("UNEXPECTED BEHAVIOR: Invalid command recognized as existing in fieldlist!");
 	    }
-
 	}
 
 	SimpleScriptMain.LOG.info("END: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());

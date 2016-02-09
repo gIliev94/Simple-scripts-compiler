@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -12,7 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 import org.apache.log4j.Logger;
+
 import simplescript.configurator.PrerequisitesConfigurator;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.program.gui.backbone.Canvas;

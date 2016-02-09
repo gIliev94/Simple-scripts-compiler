@@ -185,7 +185,7 @@ public class PrerequisitesConfigurator {
 	int key = 0;
 
 	for (int i = 0; i < userAccountCharacters.length; i++) {
-	    key = KeyMapper.retrieveKey(userAccountCharacters[i]);
+	    key = KeyMapper.retrieveKeyCode(userAccountCharacters[i]);
 
 	    if (KeyMapper.SpecialSymbols.isSpecialSymbol(userAccountCharacters[i])
 		    || Character.isUpperCase(userAccountCharacters[i])) {

@@ -10,22 +10,23 @@ import simplescript.program.utilities.StringConstants;
 import testdata.CommandTestData;
 
 /**
- * Unit test case for invalid command scenario.
+ * Unit test case for valid command scenario.
  * 
  * @author Georgi Iliev
  *
  */
-public class InvalidCommandTest extends TestCase {
+public class ValidCommandTest extends TestCase {
 
     public void testIsValidCommand() {
-	Set<String> invalidCommandKeywords = new HashSet<String>(8);
-	CommandTestData.loadInvalidCommandKeywords(invalidCommandKeywords);
+	Set<String> validCommandKeywords = new HashSet<String>(8);
+	CommandTestData.loadValidCommandKeywords(validCommandKeywords);
 
 	String testName = this.getClass().getSimpleName();
 	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
-	for (String keyword : invalidCommandKeywords) {
-	    if (Command.hasValidCommandKeyword(keyword)) {
+	for (String keyword : validCommandKeywords) {
+
+	    if (!Command.hasValidCommandKeyword(keyword)) {
 		fail("UNEXPECTED BEHAVIOR: Invalid command recognized as existing in fieldlist!");
 	    }
 

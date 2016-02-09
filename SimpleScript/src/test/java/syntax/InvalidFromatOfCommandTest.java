@@ -1,11 +1,16 @@
 package syntax;
 
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
+import simplescript.language.scripType.commands.Command;
+import simplescript.program.gui.SimpleScriptMain;
+import simplescript.program.utilities.StringConstants;
+import testdata.CommandTestData;
 import junit.framework.TestCase;
 
 /**
- * TO BE IMPLEMENTED:
- * 
- * Unit test case for incorrect format of command scenario.
+ * Unit test case for invalid format of command scenario.
  * 
  * @author Georgi Iliev
  *
@@ -13,7 +18,20 @@ import junit.framework.TestCase;
 public class InvalidFromatOfCommandTest extends TestCase {
 
     public void testHasValidCommandFormat() {
-	fail("Not yet implemented");
+	Set<String> invalidCommandStatements = new HashSet<String>(8);
+	CommandTestData.loadInvalidStatements(invalidCommandStatements);
+
+	String testName = this.getClass().getSimpleName();
+	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
+
+	for (String statement : invalidCommandStatements) {
+
+	    if (Command.hasValidFormat(statement)) {
+		fail("UNEXPECTED BEHAVIOR: Invalid command recognized as existing in fieldlist!");
+	    }
+	}
+
+	SimpleScriptMain.LOG.info("END: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
     }
 
 }

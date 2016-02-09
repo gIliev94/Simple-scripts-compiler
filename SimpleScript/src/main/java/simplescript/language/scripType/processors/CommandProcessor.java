@@ -61,11 +61,11 @@ public abstract class CommandProcessor implements ICommandProcessor {
 		    + "Command should be the first line of text file!");
 	}
 
-	if (!Command.isValidCommand(commandKeyword)) {
+	if (!Command.hasValidCommandKeyword(commandKeyword)) {
 	    throw new WrongCommandException(StringConstants.quote(commandKeyword));
 	}
 
-	if (!Command.hasValidFormat(commandKeyword, commandStatement)) {
+	if (!Command.hasValidFormat(commandStatement)) {
 	    throw new CommandFormatException(StringConstants.quote(commandKeyword));
 	}
     }
@@ -84,8 +84,7 @@ public abstract class CommandProcessor implements ICommandProcessor {
      * @param canvasPanel
      *            - the current canvas object for painting purposes.
      * @return Appropriate processor for the given command.
-     * @throws UnknownCommandException
-     * @throws CommandFormatException
+     * 
      */
     public static CommandProcessor getProcessor(String commandStatement, Canvas canvasPanel) {
 	String commandKeyword = commandStatement.split(StringConstants.WHITESPACE)[0];

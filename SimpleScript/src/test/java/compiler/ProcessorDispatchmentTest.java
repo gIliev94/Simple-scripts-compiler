@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import junit.framework.TestCase;
 import simplescript.language.scripType.processors.CommandProcessor;
 import simplescript.program.gui.SimpleScriptMain;
@@ -12,7 +11,7 @@ import simplescript.program.utilities.StringConstants;
 import testdata.DispatchmentTestData;
 
 /**
- * Unit test case for correct command processor dispatching.
+ * Unit test case for command processor dispatching.
  * 
  * @author Georgi Iliev
  *
