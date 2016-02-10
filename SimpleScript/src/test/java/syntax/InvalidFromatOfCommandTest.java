@@ -6,7 +6,7 @@ import java.util.Set;
 import simplescript.language.scripType.commands.Command;
 import simplescript.program.gui.SimpleScriptMain;
 import simplescript.program.utilities.StringConstants;
-import testdata.CommandTestData;
+import testdata.CommandsTestData;
 import junit.framework.TestCase;
 
 /**
@@ -19,15 +19,16 @@ public class InvalidFromatOfCommandTest extends TestCase {
 
     public void testHasValidCommandFormat() {
 	Set<String> invalidCommandStatements = new HashSet<String>(8);
-	CommandTestData.loadInvalidStatements(invalidCommandStatements);
+	CommandsTestData.loadInvalidStatements(invalidCommandStatements);
 
 	String testName = this.getClass().getSimpleName();
+
 	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
 	for (String statement : invalidCommandStatements) {
 
 	    if (Command.hasValidFormat(statement)) {
-		fail("UNEXPECTED BEHAVIOR: Invalid command recognized as existing in fieldlist!");
+		fail("UNEXPECTED BEHAVIOR: Invalid command format recognized!");
 	    }
 	}
 

@@ -8,9 +8,9 @@ import java.util.Set;
  * @author Georgi Iliev
  *
  */
-public class CommandTestData {
+public class CommandsTestData {
 
-    private CommandTestData() {
+    private CommandsTestData() {
     }
 
     /**

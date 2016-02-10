@@ -17,13 +17,13 @@ public class RetrieveKeyTestData {
     /**
      * Loads a collection of EXPECTED key mappings(key -> code ).
      * 
-     * @param testData
+     * @param keyMappings
      */
-    public static void loadExpectedKeyMappings(Map<Character, Integer> testData) {
-	testData.put('A', KeyEvent.VK_A);
-	testData.put(' ', KeyEvent.VK_SPACE);
-	testData.put('0', KeyEvent.VK_0);
-	testData.put('=', KeyEvent.VK_EQUALS);
-	testData.put('/', KeyEvent.VK_SLASH);
+    public static void loadExpectedKeyMappings(Map<Character, Integer> keyMappings) {
+	keyMappings.put('A', KeyEvent.VK_A);
+	keyMappings.put(' ', KeyEvent.VK_SPACE);
+	keyMappings.put('0', KeyEvent.VK_0);
+	keyMappings.put('=', KeyEvent.VK_EQUALS);
+	keyMappings.put('/', KeyEvent.VK_SLASH);
     }
 }

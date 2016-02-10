@@ -19,24 +19,25 @@ import testdata.RetrieveKeyTestData;
 public class RetrieveKeyTest extends TestCase {
 
     public void testRetrieveKey() {
-	Map<Character, Integer> testData = new HashMap<Character, Integer>(5);
-	RetrieveKeyTestData.loadExpectedKeyMappings(testData);
+	Map<Character, Integer> expectedKeyMappings = new HashMap<Character, Integer>(5);
+	RetrieveKeyTestData.loadExpectedKeyMappings(expectedKeyMappings);
 
 	int expectedKeyCode = 0;
 	int retrievedKeyCode = 0;
 
-	String testName = this.getClass().getSimpleName();
+	Character key;
 
+	String testName = this.getClass().getSimpleName();
 	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
-	for (Entry<Character, Integer> testItem : testData.entrySet()) {
-	    expectedKeyCode = testItem.getValue();
+	for (Entry<Character, Integer> keyMapping : expectedKeyMappings.entrySet()) {
+	    key = keyMapping.getKey();
+	    expectedKeyCode = keyMapping.getValue();
 
-	    retrievedKeyCode = KeyMapper.retrieveKeyCode(testItem.getKey());
+	    retrievedKeyCode = KeyMapper.retrieveKeyCode(key);
 
 	    if (expectedKeyCode != retrievedKeyCode) {
-		Character character = new Character(testItem.getKey());
-		fail("Invalid key code retrieved for key: " + StringConstants.quote(character.toString()));
+		fail("Invalid key code retrieved for key: " + StringConstants.quote(key.toString()));
 	    }
 	}
 

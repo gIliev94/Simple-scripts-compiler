@@ -27,17 +27,17 @@ public class DispatchmentTestData {
     /**
      * Loads a collection of EXPECTED dispatchment test data.
      * 
-     * @param testData
+     * @param expectedDispatchment
      */
-    public static void loadExpectedDispatchment(Map<String, CommandProcessor> testData) {
-	testData.put(Keywords.LINE, new LineProcessor(null, null));
-	testData.put(Keywords.POINT, new PointProcessor(null, null));
-	testData.put(Keywords.MOVE, new MoveProcessor(null));
-	testData.put(Keywords.CLICK, new ClickProcessor(null));
-	testData.put(Keywords.DELAY, new DelayProcessor(null));
-	testData.put(Keywords.OPEN, new OpenProcessor(null));
-	testData.put(Keywords.PRESS, new PressProcessor(null));
-	testData.put(Keywords.TEXT, new TextProcessor(null));
+    public static void loadExpectedDispatchment(Map<String, CommandProcessor> expectedDispatchment) {
+	expectedDispatchment.put(Keywords.LINE, new LineProcessor(null, null));
+	expectedDispatchment.put(Keywords.POINT, new PointProcessor(null, null));
+	expectedDispatchment.put(Keywords.MOVE, new MoveProcessor(null));
+	expectedDispatchment.put(Keywords.CLICK, new ClickProcessor(null));
+	expectedDispatchment.put(Keywords.DELAY, new DelayProcessor(null));
+	expectedDispatchment.put(Keywords.OPEN, new OpenProcessor(null));
+	expectedDispatchment.put(Keywords.PRESS, new PressProcessor(null));
+	expectedDispatchment.put(Keywords.TEXT, new TextProcessor(null));
     }
 
 }
