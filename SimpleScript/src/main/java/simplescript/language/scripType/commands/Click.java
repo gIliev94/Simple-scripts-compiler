@@ -16,8 +16,8 @@ public class Click extends Command {
 
     protected String mouseButton;
 
-    public Click(String clickToPerform) {
-	this.mouseButton = clickToPerform;
+    public Click(String mouseButton) {
+	this.mouseButton = mouseButton;
     }
 
     public void execute() throws AWTException, IOException, IllegalArgumentException {

@@ -3,11 +3,9 @@ package simplescript.program.gui.labels;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.UUID;
-
 import javax.swing.JLabel;
-
 import simplescript.program.gui.ISimpleScriptComponent;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * Abstract model of a label in SimpleScript.
@@ -19,7 +17,7 @@ public abstract class AbstractLabel extends JLabel implements ISimpleScriptCompo
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    protected AbstractLabel(String labelText, FrameMetrics metrics) {
+    protected AbstractLabel(String labelText, ComponentMetrics metrics) {
 	super(labelText);
 	this.setFont(new Font("Tahoma", Font.BOLD, 12));
 	this.setForeground(Color.YELLOW);

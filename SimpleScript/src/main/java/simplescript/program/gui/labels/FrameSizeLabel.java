@@ -1,7 +1,7 @@
 package simplescript.program.gui.labels;
 
 import java.util.UUID;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JLabel implementation for frame size label.
@@ -13,7 +13,7 @@ public class FrameSizeLabel extends AbstractLabel {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public FrameSizeLabel(String labelText, FrameMetrics metrics) {
+    public FrameSizeLabel(String labelText, ComponentMetrics metrics) {
 	super(labelText, metrics);
 	this.setBounds(metrics.framesizeLabelX, metrics.framesizeLabelY, metrics.labelWidth, metrics.labelHeight);
 	setAdditionalAttributes();

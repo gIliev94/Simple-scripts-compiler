@@ -23,9 +23,9 @@ public class PrerequisitesConfigurator {
 
     private static final Logger LOG = Logger.getLogger(PrerequisitesConfigurator.class);
 
-    private static BufferedWriter filewriter;
+    private static BufferedWriter srcFileWriter;
     private static Robot typewriter;
-    private static String currentUser;
+    private static String currentUserAccount;
     private static String desktopFolderPath;
     private static char[] userAccountCharacters;
 
@@ -45,7 +45,7 @@ public class PrerequisitesConfigurator {
 	    // Makes sure the Notepad Save directory is DESKTOP
 	    doPrecleanup();
 	    initializeConfigurator();
-	    saveAs();
+	    doSaveAs();
 	    typePathToUsers();
 	    typeUsername();
 	    typeDesktop();
@@ -107,7 +107,7 @@ public class PrerequisitesConfigurator {
      * @throws InterruptedException
      */
     private static void initializeConfigurator() throws IOException, AWTException, InterruptedException {
-	currentUser = ConfigurationConstants.CURRENT_USER;
+	currentUserAccount = ConfigurationConstants.CURRENT_USER;
 	desktopFolderPath = ConfigurationConstants.DESKTOP_FOLDER_PATH;
 
 	Runtime system = Runtime.getRuntime();
@@ -117,7 +117,7 @@ public class PrerequisitesConfigurator {
 	typewriter.setAutoDelay(RobotDelays.DOUBLECLICK_DELAY);
 	typewriter.setAutoWaitForIdle(true);
 
-	userAccountCharacters = currentUser.toCharArray();
+	userAccountCharacters = currentUserAccount.toCharArray();
     }
 
     /**
@@ -129,7 +129,7 @@ public class PrerequisitesConfigurator {
      * Performs saving of the file. (equivalent to pressing "Ctrl+S" shortcut on
      * keyboard) </p>
      */
-    private static void saveAs() {
+    private static void doSaveAs() {
 	typewriter.delay(RobotDelays.INITIAL_DELAY);
 	typewriter.keyPress(KeyEvent.VK_CONTROL);
 	typewriter.keyPress(KeyEvent.VK_S);
@@ -279,8 +279,8 @@ public class PrerequisitesConfigurator {
      */
     private static void createSrcFiles() throws IOException {
 	for (int i = 1; i <= NUMBER_OF_TASKS; i++) {
-	    File file = new File(desktopFolderPath, "[src]TASK_" + i + ".txt");
-	    filewriter = new BufferedWriter(new FileWriter(file));
+	    File srcfile = new File(desktopFolderPath, "[src]TASK_" + i + ".txt");
+	    srcFileWriter = new BufferedWriter(new FileWriter(srcfile));
 	}
     }
 
@@ -306,7 +306,7 @@ public class PrerequisitesConfigurator {
 	typewriter.keyRelease(KeyEvent.VK_F4);
 	typewriter.keyRelease(KeyEvent.VK_ALT);
 
-	filewriter.close();
+	srcFileWriter.close();
     }
 
     /**

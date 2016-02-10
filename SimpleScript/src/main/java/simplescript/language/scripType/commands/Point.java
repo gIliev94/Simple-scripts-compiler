@@ -11,20 +11,20 @@ import simplescript.program.gui.backbone.Canvas;
  */
 public class Point extends Command {
 
-    protected Canvas pointCanvas;
+    protected Canvas canvas;
     protected Color pointColor;
     protected int x;
     protected int y;
 
-    public Point(Color color, int x, int y, Canvas processorCanvas) {
-	this.pointCanvas = processorCanvas;
-	this.pointColor = color;
+    public Point(Color pointColor, int x, int y, Canvas canvasPanel) {
+	this.canvas = canvasPanel;
+	this.pointColor = pointColor;
 	this.x = x;
 	this.y = y;
     }
 
     public void execute() {
-	pointCanvas.drawPoint(pointColor, x, y);
+	canvas.drawPoint(pointColor, x, y);
     }
 
     @Override

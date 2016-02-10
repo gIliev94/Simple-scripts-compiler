@@ -22,16 +22,16 @@ import simplescript.program.utilities.StringConstants;
 public class OpenButtonListener extends AbstractButtonListener {
 
     JFileChooser fileChooser;
-    CompileButtonListener compileListener;
+    RunButtonListener runButtonListener;
 
-    public OpenButtonListener(JTextArea area, JFileChooser fileChooser, AbstractButtonListener compileListener) {
+    public OpenButtonListener(JTextArea area, JFileChooser fileChooser, AbstractButtonListener runButtonListener) {
 	super(area);
 
-	if (!(compileListener instanceof CompileButtonListener)) {
+	if (!(runButtonListener instanceof RunButtonListener)) {
 	    throw new RuntimeException("Invalid button listener!");
 	} else {
 	    this.fileChooser = fileChooser;
-	    this.compileListener = (CompileButtonListener) compileListener;
+	    this.runButtonListener = (RunButtonListener) runButtonListener;
 	}
 
     }
@@ -49,8 +49,13 @@ public class OpenButtonListener extends AbstractButtonListener {
 
 	File codeToCompile = fileChooser.getSelectedFile();
 
-	if (!codeToCompile.isFile() || !codeToCompile.getName().endsWith(".txt")) {
-	    showErr("ERROR", "Unauthorized file, only .txt permitted!!", JOptionPane.ERROR_MESSAGE);
+	if (!codeToCompile.isFile() || codeToCompile.length() == 0) {
+	    showErr("INFO", "Not a file or empty file!", JOptionPane.INFORMATION_MESSAGE);
+	    return;
+	}
+
+	if (!codeToCompile.getName().endsWith(".txt")) {
+	    showErr("ERROR", "Unauthorized file, only .txt permitted!", JOptionPane.ERROR_MESSAGE);
 	    return;
 	}
 
@@ -70,9 +75,9 @@ public class OpenButtonListener extends AbstractButtonListener {
 
 	    separateCommands = commandLines.toArray();
 
-	    compileListener.separateCommands = separateCommands;
+	    runButtonListener.separateCommands = separateCommands;
 
-	    showOutMsg("File sucessfully opened: " + StringConstants.quote(codeToCompile.getName()));
+	    showOutMsg("File opened: " + StringConstants.quote(codeToCompile.getName()));
 
 	} catch (FileNotFoundException fnfe) {
 	    showErr("ERROR", "File not found: " + codeToCompile.getName(), JOptionPane.ERROR_MESSAGE);

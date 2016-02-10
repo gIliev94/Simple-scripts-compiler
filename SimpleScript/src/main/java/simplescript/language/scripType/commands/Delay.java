@@ -14,8 +14,8 @@ public class Delay extends Command {
 
     protected String delay;
 
-    public Delay(String delayToExecute) {
-	this.delay = delayToExecute;
+    public Delay(String delay) {
+	this.delay = delay;
     }
 
     public void execute() throws AWTException, IOException {

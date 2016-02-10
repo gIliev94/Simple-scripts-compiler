@@ -1,5 +1,6 @@
 package simplescript.program.gui.listeners;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -14,7 +15,7 @@ import simplescript.program.utilities.StringConstants;
  */
 public abstract class AbstractButtonListener implements ActionListener {
 
-    JTextArea area;
+    protected JTextArea area;
 
     public AbstractButtonListener(JTextArea area) {
 	this.area = area;
@@ -56,6 +57,16 @@ public abstract class AbstractButtonListener implements ActionListener {
      */
     public void showOutMsg(String message) {
 	area.setText(StringConstants.NEWLINE + message);
+
+	Color visualAid = null;
+
+	if (message.contains("sucessfull")) {
+	    visualAid = Color.GREEN;
+	} else if (message.contains("failed")) {
+	    visualAid = Color.PINK;
+	}
+
+	area.setBackground(visualAid);
     }
 
 }

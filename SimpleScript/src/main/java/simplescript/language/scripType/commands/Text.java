@@ -17,8 +17,8 @@ public class Text extends Command {
 
     protected String text;
 
-    public Text(String textToType) {
-	this.text = textToType;
+    public Text(String text) {
+	this.text = text;
     }
 
     public void execute() throws AWTException, IOException {

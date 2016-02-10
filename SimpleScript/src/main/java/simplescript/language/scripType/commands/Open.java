@@ -15,12 +15,11 @@ public class Open extends Command {
 
     protected String program;
 
-    public Open(String programToOpen) {
-	this.program = programToOpen;
+    public Open(String program) {
+	this.program = program;
     }
 
     public void execute() throws AWTException, IOException {
-
 	if (program.toLowerCase().startsWith("www.") || program.toLowerCase().endsWith(".exe")) {
 	    Runtime system = Runtime.getRuntime();
 	    File desktopFolder = new File(ConfigurationConstants.DESKTOP_FOLDER_PATH);

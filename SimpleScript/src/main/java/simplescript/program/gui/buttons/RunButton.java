@@ -2,7 +2,7 @@ package simplescript.program.gui.buttons;
 
 import java.util.UUID;
 import simplescript.program.gui.listeners.AbstractButtonListener;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JButton implementation for "RUN" button.
@@ -10,13 +10,13 @@ import simplescript.program.utilities.FrameMetrics;
  * @author Georgi Iliev
  *
  */
-public class CompileButton extends AbstractButton {
+public class RunButton extends AbstractButton {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public CompileButton(String buttonText, FrameMetrics metrics, AbstractButtonListener listener) {
+    public RunButton(String buttonText, ComponentMetrics metrics, AbstractButtonListener listener) {
 	super(buttonText, metrics, listener);
-	this.setBounds(metrics.compileButtonX, metrics.compileButtonY, metrics.buttonWidth, metrics.buttonHeight);
+	this.setBounds(metrics.runButtonX, metrics.runButtonY, metrics.buttonWidth, metrics.buttonHeight);
 	this.addActionListener(listener);
 	setAdditionalAttributes();
     }

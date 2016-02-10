@@ -5,7 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import simplescript.program.gui.ISimpleScriptComponent;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JTextArea implementation for resulting output of script execution.
@@ -17,7 +17,7 @@ public class OutputArea extends JTextArea implements ISimpleScriptComponent {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public OutputArea(FrameMetrics metrics, Canvas canvasPanel) {
+    public OutputArea(ComponentMetrics metrics, Canvas canvasPanel) {
 	this.setBounds(metrics.textAreaX, metrics.textAreaY, metrics.textAreaWidth, metrics.textAreaHeight);
 
 	JScrollPane scrollPane = new JScrollPane();

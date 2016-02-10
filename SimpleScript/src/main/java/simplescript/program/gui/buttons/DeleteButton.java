@@ -2,7 +2,7 @@ package simplescript.program.gui.buttons;
 
 import java.util.UUID;
 import simplescript.program.gui.listeners.AbstractButtonListener;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JButton implementation for "DELETE" button.
@@ -14,7 +14,7 @@ public class DeleteButton extends AbstractButton {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public DeleteButton(String buttonText, FrameMetrics metrics, AbstractButtonListener listener) {
+    public DeleteButton(String buttonText, ComponentMetrics metrics, AbstractButtonListener listener) {
 	super(buttonText, metrics, listener);
 	this.setBounds(metrics.deleteButtonX, metrics.deleteButtonY, metrics.buttonWidth, metrics.buttonHeight);
 	this.addActionListener(listener);

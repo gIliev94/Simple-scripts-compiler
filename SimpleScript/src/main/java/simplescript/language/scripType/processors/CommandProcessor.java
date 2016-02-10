@@ -3,6 +3,7 @@ package simplescript.language.scripType.processors;
 import simplescript.language.scripType.Keywords;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.exceptions.CommandFormatException;
+import simplescript.language.scripType.exceptions.CommandNotFirstLineException;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.language.scripType.exceptions.WrongCommandException;
 import simplescript.program.gui.backbone.Canvas;
@@ -16,22 +17,19 @@ import simplescript.program.utilities.StringConstants;
  */
 public abstract class CommandProcessor implements ICommandProcessor {
 
-    protected String commandString;
-    protected String[] commandParts;
     protected Canvas canvas;
+    protected String[] commandParts;
 
     public CommandProcessor(String commandStatement, Canvas canvasPanel) {
 	if (commandStatement != null && canvasPanel != null) {
-	    this.commandString = commandStatement;
-	    this.commandParts = commandString.split(StringConstants.WHITESPACE);
+	    this.commandParts = commandStatement.split(StringConstants.WHITESPACE);
 	    this.canvas = canvasPanel;
 	}
     }
 
     public CommandProcessor(String commandStatement) {
 	if (commandStatement != null) {
-	    this.commandString = commandStatement;
-	    this.commandParts = commandString.split(StringConstants.WHITESPACE);
+	    this.commandParts = commandStatement.split(StringConstants.WHITESPACE);
 	}
     }
 
@@ -50,18 +48,17 @@ public abstract class CommandProcessor implements ICommandProcessor {
      *            with.
      * @throws CommandFormatException
      * @throws WrongCommandException
-     * @throws UnknownCommandException
+     * @throws CommandNotFirstLineException
      */
     public static void evaluateCommand(String commandStatement) throws CommandFormatException, WrongCommandException,
-	    UnknownCommandException {
+	    UnknownCommandException, CommandNotFirstLineException {
 	String commandKeyword = commandStatement.split(StringConstants.WHITESPACE)[0];
 
 	if (commandKeyword.equalsIgnoreCase(StringConstants.EMPTY_STRING)) {
-	    throw new UnknownCommandException(StringConstants.quote(commandKeyword) + StringConstants.NEWLINE
-		    + "Command should be the first line of text file!");
+	    throw new CommandNotFirstLineException();
 	}
 
-	if (!Command.hasValidCommandKeyword(commandKeyword)) {
+	if (!Command.hasValidKeyword(commandKeyword)) {
 	    throw new WrongCommandException(StringConstants.quote(commandKeyword));
 	}
 

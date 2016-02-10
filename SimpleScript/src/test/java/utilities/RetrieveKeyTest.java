@@ -26,8 +26,8 @@ public class RetrieveKeyTest extends TestCase {
 	int retrievedKeyCode = 0;
 
 	Character key;
-
 	String testName = this.getClass().getSimpleName();
+
 	SimpleScriptMain.LOG.info("START: " + StringConstants.quote(testName) + " " + Calendar.getInstance().getTime());
 
 	for (Entry<Character, Integer> keyMapping : expectedKeyMappings.entrySet()) {

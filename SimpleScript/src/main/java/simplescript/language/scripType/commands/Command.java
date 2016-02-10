@@ -3,7 +3,6 @@ package simplescript.language.scripType.commands;
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import simplescript.language.scripType.CommandFormats;
 import simplescript.language.scripType.Keywords;
 import simplescript.program.utilities.StringConstants;
@@ -17,10 +16,10 @@ import simplescript.program.utilities.StringConstants;
 public abstract class Command implements ICommand {
 
     /**
-     * <h1><i>hasValidCommandKeyword</i></h1>
+     * <h1><i>hasValidKeyword</i></h1>
      * <p>
      * <p>
-     * {@code public static boolean hasValidCommandKeyword(String testableKeyword)}
+     * {@code public static boolean hasValidKeyword(String testableKeyword)}
      * </p>
      * Evaluates whether the command is in fact valid or not. </p>
      * 
@@ -28,7 +27,7 @@ public abstract class Command implements ICommand {
      *            - the keyword to be validated as command.
      * @return TRUE if command validation passes, FALSE if it does not.
      */
-    public static boolean hasValidCommandKeyword(String testableKeyword) {
+    public static boolean hasValidKeyword(String testableKeyword) {
 	Field[] fields = Keywords.class.getDeclaredFields();
 
 	for (int i = 0; i < fields.length; i++) {

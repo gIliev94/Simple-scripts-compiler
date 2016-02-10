@@ -13,12 +13,12 @@ import simplescript.program.utilities.RobotDelays;
  */
 public class Move extends Command {
 
-    protected String mouseMoveX;
-    protected String mouseMoveY;
+    protected String targetX;
+    protected String targetY;
 
-    public Move(String moveX, String moveY) {
-	this.mouseMoveX = moveX;
-	this.mouseMoveY = moveY;
+    public Move(String targetX, String targetY) {
+	this.targetX = targetX;
+	this.targetY = targetY;
     }
 
     public void execute() throws AWTException, IOException {
@@ -27,8 +27,8 @@ public class Move extends Command {
 	robot.delay(RobotDelays.INITIAL_DELAY);
 	robot.setAutoDelay(RobotDelays.VIEWING_DELAY);
 
-	int x = Integer.parseInt(mouseMoveX);
-	int y = Integer.parseInt(mouseMoveY);
+	int x = Integer.parseInt(targetX);
+	int y = Integer.parseInt(targetY);
 
 	robot.mouseMove(x, y);
     }

@@ -8,6 +8,7 @@ import javax.swing.JTextArea;
 import simplescript.language.scripType.CommandRuntime;
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.exceptions.CommandFormatException;
+import simplescript.language.scripType.exceptions.CommandNotFirstLineException;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.language.scripType.processors.CommandProcessor;
 import simplescript.program.gui.SimpleScriptMain;
@@ -20,12 +21,12 @@ import simplescript.program.utilities.StringConstants;
  * @author Georgi Iliev
  *
  */
-public class CompileButtonListener extends AbstractButtonListener {
+public class RunButtonListener extends AbstractButtonListener {
 
     Canvas canvasPanel;
     Object[] separateCommands;
 
-    public CompileButtonListener(JTextArea area, Canvas canvasPanel) {
+    public RunButtonListener(JTextArea area, Canvas canvasPanel) {
 	super(area);
 	this.canvasPanel = canvasPanel;
     }
@@ -85,6 +86,9 @@ public class CompileButtonListener extends AbstractButtonListener {
 	    showOutMsg("Compilation failed!");
 	} catch (CommandFormatException cfe) {
 	    showErr("ERROR", cfe.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
+	    showOutMsg("Compilation failed!");
+	} catch (CommandNotFirstLineException cnfle) {
+	    showErr("ERROR", cnfle.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
 	    showOutMsg("Compilation failed!");
 	}
     }

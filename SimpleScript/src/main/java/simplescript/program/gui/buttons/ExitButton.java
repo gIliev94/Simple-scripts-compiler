@@ -2,7 +2,7 @@ package simplescript.program.gui.buttons;
 
 import java.util.UUID;
 import simplescript.program.gui.listeners.AbstractButtonListener;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JButton implementation for "EXIT" button.
@@ -14,9 +14,9 @@ public class ExitButton extends AbstractButton {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public ExitButton(String buttonText, FrameMetrics metrics, AbstractButtonListener listener) {
+    public ExitButton(String buttonText, ComponentMetrics metrics, AbstractButtonListener listener) {
 	super(buttonText, metrics, listener);
-	this.setBounds(metrics.backButtonX, metrics.backButtonY, metrics.buttonWidth, metrics.buttonHeight);
+	this.setBounds(metrics.exitButtonX, metrics.exitButtonY, metrics.buttonWidth, metrics.buttonHeight);
 	this.addActionListener(listener);
 	setAdditionalAttributes();
     }

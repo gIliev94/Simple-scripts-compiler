@@ -16,8 +16,8 @@ public class Press extends Command {
 
     protected String shortcut;
 
-    public Press(String shortcutToExecute) {
-	this.shortcut = shortcutToExecute;
+    public Press(String shortcut) {
+	this.shortcut = shortcut;
     }
 
     public void execute() throws AWTException, IOException {

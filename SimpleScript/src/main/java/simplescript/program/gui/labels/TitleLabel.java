@@ -7,7 +7,7 @@ import java.awt.Font;
 import java.util.UUID;
 import javax.swing.SwingConstants;
 import simplescript.program.gui.backbone.Canvas;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JLabel implementation of title label.
@@ -19,7 +19,7 @@ public class TitleLabel extends AbstractLabel {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public TitleLabel(String labelText, FrameMetrics metrics, Canvas canvasPanel) {
+    public TitleLabel(String labelText, ComponentMetrics metrics, Canvas canvasPanel) {
 	super(labelText, metrics);
 	this.setBounds(metrics.captionLabelX, metrics.captionLabelY, metrics.captionLabelWidth,
 		metrics.captionLabelHeight);

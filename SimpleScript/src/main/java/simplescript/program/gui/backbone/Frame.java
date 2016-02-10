@@ -6,7 +6,7 @@ import java.awt.Image;
 import java.util.UUID;
 import javax.swing.JFrame;
 import simplescript.program.gui.ISimpleScriptComponent;
-import simplescript.program.utilities.FrameMetrics;
+import simplescript.program.utilities.ComponentMetrics;
 
 /**
  * JFrame implementation for main UI look of SimpleScript�.
@@ -18,7 +18,7 @@ public class Frame extends JFrame implements ISimpleScriptComponent {
 
     private static final long serialVersionUID = UUID.randomUUID().getLeastSignificantBits();
 
-    public Frame(Image icon, FrameMetrics metrics) {
+    public Frame(Image icon, ComponentMetrics metrics) {
 	this.setBounds(metrics.x, metrics.y, metrics.width, metrics.height);
 	this.setIconImage(icon);
 	setAdditionalAttributes();
