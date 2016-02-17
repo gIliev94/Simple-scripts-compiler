@@ -138,45 +138,45 @@ public class SimpleScriptMain {
 	Display display = new Display(Toolkit.getDefaultToolkit().getScreenSize());
 	ComponentMetrics metrics = new ComponentMetrics(display.width, display.height);
 
-	final Canvas canvasPanel = new Canvas(metrics.width, metrics.height);
+	final Canvas panelCanvas = new Canvas(metrics.width, metrics.height);
 
 	String resolutionLabelText = "Resolution: " + display.getResolution();
-	final AbstractLabel resolutionLabel = new ResolutionLabel(resolutionLabelText, metrics);
-	canvasPanel.add(resolutionLabel);
+	final AbstractLabel labelResolution = new ResolutionLabel(resolutionLabelText, metrics);
+	panelCanvas.add(labelResolution);
 
 	String frameSizeLabeText = "Window Size: " + metrics.getFrameSize();
-	final AbstractLabel frameSizeLabel = new FrameSizeLabel(frameSizeLabeText, metrics);
-	canvasPanel.add(frameSizeLabel);
+	final AbstractLabel labelFrameSize = new FrameSizeLabel(frameSizeLabeText, metrics);
+	panelCanvas.add(labelFrameSize);
 
 	Image icon = new ImageIcon(this.getClass().getResource("/simpleScriptLogo.png")).getImage();
 	frame = new Frame(icon, metrics);
-	frame.getContentPane().add(canvasPanel);
+	frame.getContentPane().add(panelCanvas);
 
-	final JTextArea outputArea = new OutputArea(metrics, canvasPanel);
+	final JTextArea areaOutput = new OutputArea(metrics, panelCanvas);
 
-	final AbstractButtonListener runButtonAction = new RunButtonListener(outputArea, canvasPanel);
-	final AbstractButton btnRun = new RunButton("RUN", metrics, runButtonAction);
-	canvasPanel.add(btnRun);
+	final AbstractButtonListener actionRun = new RunButtonListener(areaOutput, panelCanvas);
+	final AbstractButton buttonRun = new RunButton("RUN", metrics, actionRun);
+	panelCanvas.add(buttonRun);
 
-	final AbstractButtonListener clearButtonAction = new ClearButtonListener(outputArea, canvasPanel);
-	final AbstractButton btnClear = new ClearButton("CLEAR", metrics, clearButtonAction);
-	canvasPanel.add(btnClear);
+	final AbstractButtonListener actionClear = new ClearButtonListener(areaOutput, panelCanvas);
+	final AbstractButton buttonClear = new ClearButton("CLEAR", metrics, actionClear);
+	panelCanvas.add(buttonClear);
 
-	final AbstractButtonListener deleteButtonAction = new DeleteButtonListener(outputArea);
-	final AbstractButton btnDelete = new DeleteButton("DELETE", metrics, deleteButtonAction);
-	canvasPanel.add(btnDelete);
+	final AbstractButtonListener actionDelete = new DeleteButtonListener(areaOutput);
+	final AbstractButton buttonDelete = new DeleteButton("DELETE", metrics, actionDelete);
+	panelCanvas.add(buttonDelete);
 
-	final AbstractButtonListener exitButtonAction = new ExitButtonListener(outputArea, frame);
-	final AbstractButton btnExit = new ExitButton("EXIT", metrics, exitButtonAction);
-	canvasPanel.add(btnExit);
+	final AbstractButtonListener actionExit = new ExitButtonListener(areaOutput, frame);
+	final AbstractButton buttonExit = new ExitButton("EXIT", metrics, actionExit);
+	panelCanvas.add(buttonExit);
 
 	final JFileChooser fileChooser = new FileChooser(new TxtFileFilter(), metrics);
-	final AbstractButtonListener openButtonAction = new OpenButtonListener(outputArea, fileChooser, runButtonAction);
-	final AbstractButton btnOpen = new OpenButton("OPEN", metrics, openButtonAction);
-	canvasPanel.add(btnOpen);
+	final AbstractButtonListener actionOpen = new OpenButtonListener(areaOutput, fileChooser, actionRun);
+	final AbstractButton buttonOpen = new OpenButton("OPEN", metrics, actionOpen);
+	panelCanvas.add(buttonOpen);
 
-	final AbstractLabel titleLabel = new TitleLabel("simpleScript", metrics, canvasPanel);
-	canvasPanel.add(titleLabel);
+	final AbstractLabel labelTitle = new TitleLabel("simpleScript", metrics, panelCanvas);
+	panelCanvas.add(labelTitle);
     }
 
 }
