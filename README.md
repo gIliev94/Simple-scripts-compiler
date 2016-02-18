@@ -81,7 +81,7 @@ Example: text It`s something like this.
 ------------------------------------------------------------------------------------------------------------------------------
 - "open"
   
-Description: Opens up a program by executable(.exe) or opens up a website by address(leading with "www.") in user`s default browser.
+Description: Opens up a program by executable(.exe) or opens up a website by address(leading with www prefix) in the default browser.
   
 Format: open [executable_with_extension_included] || [address_with_prefix_www]
   
