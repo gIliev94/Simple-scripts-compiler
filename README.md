@@ -8,9 +8,9 @@ of a programming language("scripType") integrated in the application helping the
 commands. The basic concept is a command begins with a keyword and then parameters, separated by whitespaces.
 
 
+<h3>DEMO:</h3>
 
-
-
+<a href="https://gyazo.com/5c05e1d347a8505fdba14dd92564fe1a"><img src="https://i.gyazo.com/5c05e1d347a8505fdba14dd92564fe1a.gif" alt="https://gyazo.com/5c05e1d347a8505fdba14dd92564fe1a"/></a>
 
 Available commands in "scripType":
 
