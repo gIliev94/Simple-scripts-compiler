@@ -10,7 +10,7 @@ commands. The basic concept is a command begins with a keyword and then paramete
 
 <h3>DEMO:</h3>
 
-<a href="https://gyazo.com/5c05e1d347a8505fdba14dd92564fe1a"><img src="https://i.gyazo.com/5c05e1d347a8505fdba14dd92564fe1a.gif" alt="https://gyazo.com/5c05e1d347a8505fdba14dd92564fe1a"/></a>
+<a href="https://gyazo.com/ffc48d8affb311f03a3889a23fd24905"><img src="https://i.gyazo.com/ffc48d8affb311f03a3889a23fd24905.gif" alt="https://gyazo.com/ffc48d8affb311f03a3889a23fd24905"/></a>
 
 Available commands in "scripType":
 
