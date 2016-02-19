@@ -60,7 +60,7 @@ public abstract class AbstractButtonListener implements ActionListener {
 
 	Color visualAid = null;
 
-	if (message.contains("successfull")) {
+	if (message.contains("successful")) {
 	    visualAid = Color.GREEN;
 	} else if (message.contains("failed")) {
 	    visualAid = Color.PINK;
