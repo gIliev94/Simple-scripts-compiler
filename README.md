@@ -8,9 +8,9 @@ of a programming language("scripType") integrated in the application helping the
 commands. The basic concept is a command begins with a keyword and then parameters, separated by whitespaces.
 
 
+<h3>DEMO:</h3>
 
-
-
+<a href="https://gyazo.com/5c05e1d347a8505fdba14dd92564fe1a"><img src="https://i.gyazo.com/5c05e1d347a8505fdba14dd92564fe1a.gif" alt="https://gyazo.com/5c05e1d347a8505fdba14dd92564fe1a"/></a>
 
 Available commands in "scripType":
 
@@ -81,7 +81,7 @@ Example: text It`s something like this.
 ------------------------------------------------------------------------------------------------------------------------------
 - "open"
   
-Description: Opens up a program by executable(.exe) or opens up a website by address(leading with "www.") in user`s default browser.
+Description: Opens up a program by executable(.exe) or opens up a website by address(leading with www prefix) in the default browser.
   
 Format: open [executable_with_extension_included] || [address_with_prefix_www]
   
