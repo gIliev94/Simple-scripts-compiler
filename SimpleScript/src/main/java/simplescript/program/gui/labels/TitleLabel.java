@@ -5,7 +5,9 @@ import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.util.UUID;
+
 import javax.swing.SwingConstants;
+
 import simplescript.program.gui.backbone.Canvas;
 import simplescript.program.utilities.ComponentMetrics;
 

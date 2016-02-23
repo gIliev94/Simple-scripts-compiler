@@ -1,6 +1,7 @@
 package simplescript.program.gui.labels;
 
 import java.util.UUID;
+
 import simplescript.program.utilities.ComponentMetrics;
 
 /**

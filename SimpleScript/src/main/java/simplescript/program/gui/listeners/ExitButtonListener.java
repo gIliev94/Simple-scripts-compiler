@@ -1,8 +1,10 @@
 package simplescript.program.gui.listeners;
 
 import java.awt.event.ActionEvent;
+
 import javax.swing.JFrame;
-import javax.swing.JTextArea;
+
+import simplescript.program.gui.backbone.OutputArea;
 
 /**
  * Action listener for "EXIT" button.
@@ -14,7 +16,7 @@ public class ExitButtonListener extends AbstractButtonListener {
 
     JFrame frame;
 
-    public ExitButtonListener(JTextArea area, JFrame frame) {
+    public ExitButtonListener(OutputArea area, JFrame frame) {
 	super(area);
 	this.frame = frame;
     }

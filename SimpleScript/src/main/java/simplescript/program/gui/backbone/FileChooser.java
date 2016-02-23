@@ -3,8 +3,10 @@ package simplescript.program.gui.backbone;
 import java.awt.Dimension;
 import java.io.File;
 import java.util.UUID;
+
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
+
 import simplescript.program.gui.ISimpleScriptComponent;
 import simplescript.program.utilities.ComponentMetrics;
 

@@ -2,8 +2,9 @@ package simplescript.program.gui.listeners;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
+
 import simplescript.program.gui.backbone.Canvas;
+import simplescript.program.gui.backbone.OutputArea;
 
 /**
  * Action listener for "CLEAR" button.
@@ -15,7 +16,7 @@ public class ClearButtonListener extends AbstractButtonListener {
 
     Canvas canvasPanel;
 
-    public ClearButtonListener(JTextArea area, Canvas canvasPanel) {
+    public ClearButtonListener(OutputArea area, Canvas canvasPanel) {
 	super(area);
 	this.canvasPanel = canvasPanel;
     }

@@ -2,6 +2,7 @@ package simplescript.language.scripType;
 
 import java.awt.AWTException;
 import java.io.IOException;
+
 import simplescript.language.scripType.commands.ICommand;
 
 /**

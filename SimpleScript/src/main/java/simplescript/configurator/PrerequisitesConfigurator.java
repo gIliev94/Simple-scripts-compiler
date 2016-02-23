@@ -7,8 +7,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
+
 import simplescript.program.utilities.KeyMapper;
 import simplescript.program.utilities.RobotDelays;
 import simplescript.program.utilities.StringConstants;

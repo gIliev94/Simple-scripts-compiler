@@ -3,11 +3,12 @@ package syntax;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
+
+import junit.framework.TestCase;
 import simplescript.language.scripType.commands.Command;
 import simplescript.program.gui.SimpleScriptMain;
 import simplescript.program.utilities.StringConstants;
 import testdata.CommandsTestData;
-import junit.framework.TestCase;
 
 /**
  * Unit test case for valid format of command scenario.

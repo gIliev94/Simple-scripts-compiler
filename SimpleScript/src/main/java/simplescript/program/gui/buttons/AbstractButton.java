@@ -2,7 +2,9 @@ package simplescript.program.gui.buttons;
 
 import java.awt.Font;
 import java.util.UUID;
+
 import javax.swing.JButton;
+
 import simplescript.program.gui.ISimpleScriptComponent;
 import simplescript.program.gui.listeners.AbstractButtonListener;
 import simplescript.program.utilities.ComponentMetrics;

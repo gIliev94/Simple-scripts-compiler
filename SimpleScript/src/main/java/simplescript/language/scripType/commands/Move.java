@@ -3,6 +3,7 @@ package simplescript.language.scripType.commands;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.IOException;
+
 import simplescript.program.utilities.RobotDelays;
 
 /**

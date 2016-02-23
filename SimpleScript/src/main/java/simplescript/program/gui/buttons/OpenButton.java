@@ -1,6 +1,7 @@
 package simplescript.program.gui.buttons;
 
 import java.util.UUID;
+
 import simplescript.program.gui.listeners.AbstractButtonListener;
 import simplescript.program.utilities.ComponentMetrics;
 

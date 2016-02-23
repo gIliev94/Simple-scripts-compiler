@@ -4,7 +4,9 @@ import java.awt.CardLayout;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.util.UUID;
+
 import javax.swing.JFrame;
+
 import simplescript.program.gui.ISimpleScriptComponent;
 import simplescript.program.utilities.ComponentMetrics;
 

@@ -5,14 +5,16 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
 import org.apache.log4j.Logger;
+
 import simplescript.configurator.PrerequisitesConfigurator;
 import simplescript.language.scripType.exceptions.UnknownCommandException;
 import simplescript.program.gui.backbone.Canvas;
@@ -22,22 +24,22 @@ import simplescript.program.gui.backbone.OutputArea;
 import simplescript.program.gui.backbone.TxtFileFilter;
 import simplescript.program.gui.buttons.AbstractButton;
 import simplescript.program.gui.buttons.ClearButton;
-import simplescript.program.gui.buttons.RunButton;
 import simplescript.program.gui.buttons.DeleteButton;
 import simplescript.program.gui.buttons.ExitButton;
 import simplescript.program.gui.buttons.OpenButton;
+import simplescript.program.gui.buttons.RunButton;
 import simplescript.program.gui.labels.AbstractLabel;
 import simplescript.program.gui.labels.FrameSizeLabel;
 import simplescript.program.gui.labels.ResolutionLabel;
 import simplescript.program.gui.labels.TitleLabel;
 import simplescript.program.gui.listeners.AbstractButtonListener;
 import simplescript.program.gui.listeners.ClearButtonListener;
-import simplescript.program.gui.listeners.RunButtonListener;
 import simplescript.program.gui.listeners.DeleteButtonListener;
 import simplescript.program.gui.listeners.ExitButtonListener;
 import simplescript.program.gui.listeners.OpenButtonListener;
-import simplescript.program.utilities.Display;
+import simplescript.program.gui.listeners.RunButtonListener;
 import simplescript.program.utilities.ComponentMetrics;
+import simplescript.program.utilities.Display;
 import simplescript.program.utilities.RobotDelays;
 import simplescript.program.utilities.StringConstants;
 
@@ -152,7 +154,7 @@ public class SimpleScriptMain {
 	frame = new Frame(icon, metrics);
 	frame.getContentPane().add(panelCanvas);
 
-	final JTextArea areaOutput = new OutputArea(metrics, panelCanvas);
+	final OutputArea areaOutput = new OutputArea(metrics, panelCanvas);
 
 	final AbstractButtonListener actionRun = new RunButtonListener(areaOutput, panelCanvas);
 	final AbstractButton buttonRun = new RunButton("RUN", metrics, actionRun);

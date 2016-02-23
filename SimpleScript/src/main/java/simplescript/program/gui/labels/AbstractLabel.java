@@ -3,7 +3,9 @@ package simplescript.program.gui.labels;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.UUID;
+
 import javax.swing.JLabel;
+
 import simplescript.program.gui.ISimpleScriptComponent;
 import simplescript.program.utilities.ComponentMetrics;
 

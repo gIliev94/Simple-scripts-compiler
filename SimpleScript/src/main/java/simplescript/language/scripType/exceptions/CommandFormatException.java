@@ -1,6 +1,7 @@
 package simplescript.language.scripType.exceptions;
 
 import java.util.UUID;
+
 import simplescript.program.utilities.StringConstants;
 
 /**

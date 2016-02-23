@@ -3,7 +3,9 @@ package simplescript.program.utilities;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
+
 import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 /**

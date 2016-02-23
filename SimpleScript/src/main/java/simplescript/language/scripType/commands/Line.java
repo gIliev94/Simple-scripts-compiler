@@ -2,6 +2,7 @@ package simplescript.language.scripType.commands;
 
 import java.awt.Color;
 import java.awt.Point;
+
 import simplescript.program.gui.backbone.Canvas;
 
 /**

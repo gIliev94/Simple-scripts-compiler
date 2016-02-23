@@ -7,10 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Vector;
+
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
+
 import simplescript.program.gui.SimpleScriptMain;
+import simplescript.program.gui.backbone.OutputArea;
 import simplescript.program.utilities.StringConstants;
 
 /**
@@ -24,8 +26,8 @@ public class OpenButtonListener extends AbstractButtonListener {
     JFileChooser fileChooser;
     RunButtonListener runButtonListener;
 
-    public OpenButtonListener(JTextArea area, JFileChooser fileChooser, AbstractButtonListener runButtonListener) {
-	super(area);
+    public OpenButtonListener(OutputArea outputArea, JFileChooser fileChooser, AbstractButtonListener runButtonListener) {
+	super(outputArea);
 
 	if (!(runButtonListener instanceof RunButtonListener)) {
 	    throw new RuntimeException("Invalid button listener!");
@@ -43,19 +45,19 @@ public class OpenButtonListener extends AbstractButtonListener {
 	int dialogState = fileChooser.showOpenDialog(fileChooser);
 
 	if (dialogState == JFileChooser.CANCEL_OPTION) {
-	    showErr("WARNING", "File selection cancelled!", JOptionPane.WARNING_MESSAGE);
+	    output.showErr("WARNING", "File selection cancelled!", JOptionPane.WARNING_MESSAGE);
 	    return;
 	}
 
 	File codeToCompile = fileChooser.getSelectedFile();
 
 	if (!codeToCompile.isFile() || codeToCompile.length() == 0) {
-	    showErr("INFO", "Not a file or empty file!", JOptionPane.INFORMATION_MESSAGE);
+	    output.showErr("INFO", "Not a file or empty file!", JOptionPane.INFORMATION_MESSAGE);
 	    return;
 	}
 
 	if (!codeToCompile.getName().endsWith(".txt")) {
-	    showErr("ERROR", "Unauthorized file, only .txt permitted!", JOptionPane.ERROR_MESSAGE);
+	    output.showErr("ERROR", "Unauthorized file, only .txt permitted!", JOptionPane.ERROR_MESSAGE);
 	    return;
 	}
 
@@ -77,20 +79,22 @@ public class OpenButtonListener extends AbstractButtonListener {
 
 	    runButtonListener.separateCommands = separateCommands;
 
-	    showOutMsg("File opened: " + StringConstants.quote(codeToCompile.getName()));
+	    output.showOutMsg("File opened: " + StringConstants.quote(codeToCompile.getName()));
 
 	} catch (FileNotFoundException fnfe) {
-	    showErr("ERROR", "File not found: " + codeToCompile.getName(), JOptionPane.ERROR_MESSAGE);
-	    showOutMsg("Compilation failed!");
+	    output.showErr("ERROR", "File not found: " + codeToCompile.getName(), JOptionPane.ERROR_MESSAGE);
+	    output.showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.info("File not found");
 	} catch (IOException ioe) {
-	    showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
+	    output.showErr("ERROR",
+		    "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 		    JOptionPane.ERROR_MESSAGE);
-	    showOutMsg("Compilation failed!");
+	    output.showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.error("Error with file / directory: " + codeToCompile.getName(), ioe);
 	} catch (NullPointerException npe) {
-	    showErr("ERROR", "Missing internal resource value: " + npe.getLocalizedMessage(), JOptionPane.ERROR_MESSAGE);
-	    showOutMsg("Compilation failed!");
+	    output.showErr("ERROR", "Missing internal resource value: " + npe.getLocalizedMessage(),
+		    JOptionPane.ERROR_MESSAGE);
+	    output.showOutMsg("Compilation failed!");
 	    SimpleScriptMain.LOG.error("Missing internal resource value: " + npe.getLocalizedMessage(), npe);
 	} finally {
 	    try {
@@ -98,9 +102,10 @@ public class OpenButtonListener extends AbstractButtonListener {
 		    reader.close();
 		}
 	    } catch (IOException ioe) {
-		showErr("ERROR", "Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
+		output.showErr("ERROR",
+			"Error with file / directory: " + StringConstants.NEWLINE + ioe.getLocalizedMessage(),
 			JOptionPane.ERROR_MESSAGE);
-		showOutMsg("Compilation failed!");
+		output.showOutMsg("Compilation failed!");
 		SimpleScriptMain.LOG.warn("Error with file / directory: ", ioe);
 	    }
 	}

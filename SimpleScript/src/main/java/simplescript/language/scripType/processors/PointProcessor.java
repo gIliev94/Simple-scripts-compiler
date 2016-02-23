@@ -1,6 +1,7 @@
 package simplescript.language.scripType.processors;
 
 import java.awt.Color;
+
 import simplescript.language.scripType.commands.Command;
 import simplescript.language.scripType.commands.Point;
 import simplescript.program.gui.backbone.Canvas;

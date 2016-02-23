@@ -3,6 +3,7 @@ package simplescript.language.scripType.commands;
 import java.awt.AWTException;
 import java.io.File;
 import java.io.IOException;
+
 import simplescript.configurator.ConfigurationConstants;
 
 /**

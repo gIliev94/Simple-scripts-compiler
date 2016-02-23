@@ -3,6 +3,7 @@ package simplescript.language.scripType.commands;
 import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import simplescript.language.scripType.CommandFormats;
 import simplescript.language.scripType.Keywords;
 import simplescript.program.utilities.StringConstants;

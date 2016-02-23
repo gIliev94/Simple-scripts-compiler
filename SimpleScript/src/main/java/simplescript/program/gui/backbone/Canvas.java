@@ -7,7 +7,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.UUID;
+
 import javax.swing.JPanel;
+
 import simplescript.program.gui.ISimpleScriptComponent;
 
 /**
