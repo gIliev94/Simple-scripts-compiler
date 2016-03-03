@@ -10,4 +10,4 @@ The original idea for this compiler was to serve as a practice tool / visual aid
 
 <h3>DEMO:</h3>
 
-<a href="https://gyazo.com/ffc48d8affb311f03a3889a23fd24905"><img src="https://i.gyazo.com/ffc48d8affb311f03a3889a23fd24905.gif" alt="https://gyazo.com/ffc48d8affb311f03a3889a23fd24905"/></a>
+![Demo](https://github.com/gIliev94/Simple-scripts-compiler/blob/master/SimpleScript/wiki/demo.gif)
